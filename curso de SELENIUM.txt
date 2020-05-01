@@ -1,0 +1,43 @@
+.A3 MINHA PRIMEIRA AUTOMAÇÃO
+
+O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada WEB-DRIVER que interagem com o NAVEGADOR especifico
+
+*PARA RODAR OS CÓDIGOS DEVE SER PELO TERMINAL E DEVE ESTÁ ATIVADO NA VENV POIS O SELENIUM ESTA´INSTALADO LÁ
+
+
+>>> from selenium.webdriver import Firefox
+>>> browser = Firefox()		#um objeto Firefox é criado e ao rodar o código, abre um navegador 				do firefox
+>>> broser.quit()	#fecha o navegador aberto
+
+-> Elementos html
+
+<tag atributo=valor> 
+
+	content (outras tags, textos e etc)
+
+</tag>
+
+
+-> DOM (Document Object Model)
+
+- dá a árvore de uma janela e seus objetos e seus elementos 
+
+
+-> Selenium
+
+- a visão da arquitetura pelo selenium
+
+>>> browser.get('http://ddg.gg')	#acessa a pagina da url passada no argumento
+
+>>> p = browser.find_element_by_tag_name('<nomeDaTag>')	#retorna um web element
+
+>>> p.click() 	# clica no elemento
+
+>>> p.text 	#retorna o conteúdo de texto daquela tag
+
+*dependendo da situação é importante ter um delay (sleep) para obter umm conteúdo
+
+>>> p = browser.find_elements_by_tag_name('<nomeDaTag>')    #retorna uma lista com web elements, 							    atentando ao s de elements
+
+>>> find_elements_by_tag_name()  
+retorna uma lista contendo os elementos web drives que tem o nome da tag passada no arg
