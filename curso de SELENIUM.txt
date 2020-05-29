@@ -1,13 +1,13 @@
 .A3 MINHA PRIMEIRA AUTOMAÇÃO
 
-O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada WEB-DRIVER que interagem com o NAVEGADOR especifico
+O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada WEB-DRIVER que interage com o NAVEGADOR especifico
 
 *PARA RODAR OS CÓDIGOS DEVE SER PELO TERMINAL E DEVE ESTÁ ATIVADO NA VENV POIS O SELENIUM ESTA´INSTALADO LÁ
 
 
 >>> from selenium.webdriver import Firefox
 >>> browser = Firefox()		#um objeto Firefox é criado e ao rodar o código, abre um navegador 				do firefox
->>> broser.quit()	#fecha o navegador aberto
+>>> browser.quit()	#fecha o navegador aberto
 
 -> Elementos html
 
@@ -37,7 +37,862 @@ O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada W
 
 *dependendo da situação é importante ter um delay (sleep) para obter umm conteúdo
 
->>> p = browser.find_elements_by_tag_name('<nomeDaTag>')    #retorna uma lista com web elements, 							    atentando ao s de elements
+>>> p = browser.find_elements_by_tag_name('<nomeDaTag>')    #retorna uma lista com web elements, 							    	    atentando ao s de elements
 
 >>> find_elements_by_tag_name()  
 retorna uma lista contendo os elementos web drives que tem o nome da tag passada no arg
+
+>>> p.get_attribute('<nomeDaTag>')
+retorna o valor do atributo
+
+
+
+.A4 NAVEGAÇÃO E ATRIBUTOS
+
+-> Busca aninhada
+
+o conteúdo de uma tag pode ser outra tag
+
+- as tags estão aninhadas
+- o DOM hierarquiza a estrutura de ninho dentre as tags
+
+-> Encontrar o elemento especifico
+
+ul = brws.find_element_by_tag_name('ul')	#vai pegar o primeiro elemento ul na hierarquia DOM
+
+li = ul.find_elements_by_tag_name('li') 	#dentro de ul há outros webElement do tipo li que 							podem ser acessados, pois 'li' está aninhado em'ul'
+
+li[0].find_elements_by_tag_name('a')  #continua o ciclo, obtendo o elemento âncora dentro de li[0]
+
+
+-> Atributos
+
+seja o webElement 'a':
+
+seus atributos:
+
+- href
+- text (esse mais ou menos)
+
+>>> a.get_attribute('href')
+#retorna o link, que é o valor do atributo href do objeto webElement a (string)
+
+com o href é possivel diferenciar links das paginas
+
+>>> a.text
+retorna o content de texto (string)
+
+
+-> Navegação:
+
+estrutura da pagina 
+
+--> Histórico da janela aberta no momento:
+
+se comporta como uma pilha, em que o ultimo site acessado sempre ocupa a posição 0 do histórico
+
+browser.back()		#volta para o penultimo elemento do histórico
+browser.forward()	#avança para o próximo elemento em que se encontra o site do histórico
+
+#não faz uma nova requisição, mas sim utiliza os dados em cache, do ultimo estado em que estava
+
+*esse histórico é referente a janela aberta no momento, e não ao histórico completo de navagação do navegador. O que ocorre é que o JS altera o estado da url da janela aberta, pegando tudo o que tá dentro do contexto dessa janela aberta dinamicamente. 
+*O histórico na verdade é um histórico de modificações dessa janela em especifica
+
+
+--> Location:
+
+>>> browser.current_url
+retorna url atual
+
+- entendendo uma URL
+
+ex:
+
+http://selenium.dunossauro.live/aula_04.html
+
+schema (protocolos): http://, https://, file://, ftp://, etc
+
+netloc: selenium.dunossauro.live
+
+path do arquivo: aula_04.html
+
+- o selenium só tem a função current_url para o python
+- deve-se utilizar a biblioteca URLlib para obter mais informações de uma url que o selenium não realiza
+
+>>> from urllib.parse import urlparse
+>>> urlparse(browser.current_url)
+retorna os elementos da url citadas acima e mais
+
+
+>>> browser.refresh()
+atualiza a pagina em função do location
+
+* ao dar refresh na pagina, esse refresh é contabilizado e sua url é pilhada no histórico, pois ele cria uma nova requisição
+
+
+>>> browser.title 
+retorna o title da pagina
+
+
+>>> from pprint import pprint
+vai importar uma função que realiza um print mais visivel e automatico
+
+
+
+.CONHECENDO XPATH
+
+- Navegando e extraindo dados de documentos html
+
+-> XML Path Language: linguagem de consulta para selecionar e navegar por nós de um documento xml
+
+xml: formato baseado em texto para REPRESENTAÇÕES DE INFORMAÇÕES ESTRUTURADAS, por exemplo: documentos, configurações, livros, transações e etc
+
+o xml estrutura de modo parecido como o html
+
+- casos de uso: arquivo de configuração, troca de mensagens entre aplicações, padrão para documentos (open document format)
+
+- muitas api retornam um xml
+
+- no python há libs para tratar xml
+
+-> Parsel: lib para extrair dados de html, usado no Scrapy
+
+>>> from parsel import Selector
+>>> response = Selector(text=<arquivo>) #criar um objeto Seletor em que o arquivo é html
+
+>>> response.xpath('/html')
+retorna um objeto de caminho absoluto partindo do elemento html
+
+>>> response.xpath('/html/head')
+RETORNA um OBJETO de caminho em que o elemento head está aninhado ao html
+
+>>> response.xpath('/html/head').getall() 
+RETORNA uma LISTA contendo os conteúdo desse path
+
+>>> response.xpath('/html/head').get()
+RETORNA o CONTEÚDO
+
+*get retorna None se o path não for passado corretamente:
+
+ex:	response.xpath('/title').get()	#title é um elemento filho
+
+para isso, deve-se utilizar o //
+
+>>> response.xpath('//title').get()	#pega TODOS os CONTEÚDOS title que houver no documento
+
+>>> response.xpath('//ul/*').getall()	#pega TODOS os CONTEÚDOS LOGO A SEGUIR de todos os ul
+
+>>> response.xpath('//ul//*).getall()	#pega TODOS OS CONTEÚDOS ANINHADOS ao elemento passado
+
+-> pegar elementos indexados
+*OS INDICES AQUI COMEÇAM EM 1
+
+>>> response.xpath('//ol/li[2]').getall()
+retorna OS SEGUNDOS li de cada ol existente
+
+>>> response.xpath('(//ol/li)[2])').getall()
+retorna o segundo li de todos os obtidos
+
+>>> response.xpath('//ol[1]/li[2]').getall()
+de todos os ol obtido, vai pegar do primeiro, o segundo li
+
+
+>>> response.xpath('//h1/text()').getall()
+retorna a lista, contendo os conteúdo de todos h1 obtidos
+
+
+>>> respones.xpat('//h1//text()').getall()
+retorna a lista contendo todos os conteúdos de todos os h1
+
+>>> responses.xpath('(//ul/li)[last()]).getall()
+retorna uma lista contendo o último li aninhado no ultimo ul
+
+- no Elements do  DevTools, é possivel copiar o xpath de um dado elemento. Ao colar do clipboard, a string retornada é o path absoluto do elemento
+
+*não é interessante utilizar um path absoluto, pois a pagina pode mudar
+
+-> é possivel buscar pelos atributos
+
+>>> response.xpath('//h1/@data-section').getall()
+retorna uma lista contendo os VALORES dos ATRIBUTOS data-section que estão na tag h1. é mais um caso de aninhamento, devido ao /
+
+>>> response.xpath('//h1[@data-section]').getall()
+retorna uma lista contendo todos os h1 cujo o atributo é data-section. aqui é um caso de referência, devido ao []
+
+-> Busca no conteúdo de texto
+
+>>> response.xpath('//li[contains(text(), 'forno')]').getall()
+retorna uma lista, conteudo os li cujo em seu texto haja a palavra forno
+
+
+>>> response.xpath('//li[contains(., 'leite')]').getall()
+retorna uma lista contendo todos os li em que haja a palavra 'leite', seja no texto seja em uma tag filha
+
+
+>>> response.xpath('//li[not(contains(., 'leite')]').getall()
+retorna todos os li em que NÃO possua a palavra leite, onde quer que seja
+
+
+>>> response.xpath('//h1[@data-qtde!='1']').getall()
+retorna todos os h1 em que o valor do atributo data-qtde seja DIFERENTE de 1
+
+- operadores de > e < funciona tbm
+
+
+-> Nó
+
+um elemento possui nós, que são as relações que possuem com os elementos ao seu redor
+
+- nó child: são as relações dos elementos que estão aninhados com esse elemento
+- nós parents: são os elementos em que ele esta aninhado
+- nós siblins: são os elementos que estão na mesma hierarquia do ninho em relação ao parent
+  - haverá os preceding siblings e foward siblings relativo a um elemento
+- nós ancestors: são os elementos que são os ultimos parent daquele nó de siblings alinhados 
+
+   por exemplo: um parent de um elemento é tbm seu ancestor, bem como o parent do seu parent e assim vai
+
+
+- self é onde o seu seletor está direcionado
+
+>>> response.xpath(//h1[@data-section='ingredients']).getall()
+retorna a lista contendo  o h1 em que o seu atributo data-section é ingredients 
+esse h1 é o self (?)
+
+-> Buscas por nós
+
+>>> response.xpath('//h1[@data-section='ingredients']/parents::div').getall()
+retorna a lista contendo o parent e seu conteudo, do h1 passado
+
+
+>>> response.xpath('//h1[@data-section="ingredients"]/following-sibling::ul/li').getall()
+retorna uma lista: retorna todos os li aninhados aos ul tais que são irmãos seguintes do self, que no caso é o h1 passado
+
+
+>>> response.xpath("//h2[contains(text(), 'Pudim') and contains(./preceding-sibling::h1/data-section, 'ingredients')]/following-sibling::ul/li").getall()
+retorna uma lista contendo os li em que: partindo de h2 que em seu texto possua a string 'Pudim' e contenha um irmão anterior tal que possua um h1 em que no seu atributo data-section tenha o valor 'ingredients'. O resultado será um elemento selecionado, que a partir dele vai se buscar de seus irmãos seguintes os li aninhados ao ul
+
+
+
+
+.A5 PROCURANDO E INTERAGINDO COM ELEMENTOS
+
+-> Atributos globais
+
+atributos comuns entre tags do html
+--> obter webElement através de atributos, independente da tag
+
+- nesse contexto, um dos atributo pode ser o id, que supõe-se ser único
+
+>>> browser.find_element_by_id('<valor>')
+esse seletor retorna o webElement cujo o id é igual ao parametro passado
+
+- classes: se refere a um grupo que possuem características em comum
+
+>>> browser.find_element_by_class_name('<valor>')
+retorna o primeiro webElement cujo atributo classe é igual ao parametro
+
+
+>>> browser.find_elements_by_class_name('<valor>')
+retorna a lista contendo TODOS os webElemets que correspondem a essa classe
+
+
+com isso, é possível obter uma busca mais filtrada do webElement, conseguindo também acessar as tags com o método find_elements_by_tag_name() desse webElement ou qualquer de modo aninhado obter outros webElements e também obter desses seus atributos.
+
+alguns atributos:
+
+- autofocus: direciona o cursor do mouse naquele elemento
+
+- title: mostra uma mensagem ao passar o mouse por cima desse elemento
+
+- hidden: oculta o elemento
+
+- name: referencia o nome do campo preenchido do formulário 
+
+-> Elementos Web
+
+--> input
+
+elemento web em que o usuário possa interagir com a página inserindo ou selecionando dados.
+
+
+>>> browser.find_element_by_name('<valor>')
+retorna o webElement que possua no atributo name o valor passado. esse seletor é util pois os inputs de formulários costumam possuir nomes
+
+seja um webElement obtido por find_element_by_name():
+
+>>> element = find_element_by_name('<nome>')
+>>> element.send_keys('<string>')
+aqui irá enviar a string passada para o campo input desse element
+
+
+--> Forms
+são elementos que aninham os elementos responsáveis pelos inputs dos usuários.
+
+
+<form target=valor method=valor action=valor> 
+	<input>
+	<input>
+	<input>
+<\form>
+
+atributos de forms:
+
+- target: redireciona um conteúdo da pagina, após o submit
+
+valores:
+	_self abre na mesma janela, na current_url
+
+	_blank abre em outra janela
+
+- method: se o submit será enviado pela url ou 'escondido'
+
+valores:	
+	get: insere na url
+
+	post: põe dentro de um pacote e envia pelo protocolo (por request)
+
+- action: onde será feito o request, carregando outra url ou carregando a atual
+
+valores:
+	url: uma outra url que será feita a request
+	#: na current_url que será feita
+
+
+*o form pode estar dentro de um fieldset, como de costume
+
+
+-> query string 
+
+- é uma string adicionada na url após o submit a qual será realizada uma query dos dados passados no form
+
+- começa com ? e a cada valor do input é separado por &
+
+- para cada input tem: <valor de name>=<valor do input>	
+
+- alguns caracteres são alterados, por exemplo o @ é %40 que corresponde ao caractere do browser
+
+- geralmente o resultado desse submit é um json com as chaves sendo o nome do atributo name e seus valores o próprio valor do input
+  - com isso, para decodificar esse json no python, deve-se utilizar o modulo json e chamar o método loads()
+
+
+SELETORES:
+
+- maneiras de encontrar elementos dentro de uma estrutura html ou xml que tem uma sintaxe própria e nomenclaturasa próprias.   
+
+- Basicamente, é uma maneira e seleccionar elementos usando os atributos dos próprios elementos
+
+ex: métodos como find_element_by_class e etc
+
+- selecionar um webElement em função de uma característica passada e que este elemento possui, sendo elas atributos, valores de atributos, parentescos entre outros webElements
+
+- Estes seletores são utilizados para fazer guias de estilo css, por exemplo
+
+
+-> CSS Selector
+
+4 Tipos de seletores:
+
+- básicos:
+  id
+  tipo[tag]
+  classe
+  atributo
+  universal
+  combinados
+- seletores de grupo:
+
+- combinadores: mais de um seletores que se combinam formando outros
+
+- pseudo[classes, elementos]
+
+--> Seletores por id:
+
+a sintaxe dos argumentos é como em CSS
+
+>>> browser.find_element_by_css_selector('#<valor de um id>')
+
+--> Seletor por tipo\tag
+
+>>> browser.find_element_by_css_selector('<tag>')
+
+>>> browser.find_elements_by_css_selector('<tag>')
+
+
+-> Seletor por classe
+
+>>> browser.find_element_by_css_selector('.<valor da classe>')
+
+>>> browser.find_elements_by_css_selector('<tag>.<valor da classe>')
+
+
+-> Seletor por atributos
+
+- maneiras de obter atributos diferentes
+
+  - [atributo]	#chave do atributo
+
+>>> browser.find_elements_by_css_selector('[<atributo>]')
+
+ex: 
+>>> browser.find_elements_by_css_selector('[name]')
+
+  - [atributo operador valor]
+
+- utiliza padrões como em regex
+
+[atributo=valor]	#igual\exato (match)
+
+[atributo*=valor]	#deve ocorrer algo como valor ou não
+
+[atributo|=valor]	#o match exato da palavra deve ocorrer no inicio ou em algum lugar
+
+
+[atributo^=valor]	#deve iniciar 
+
+[atributo$=valor]	#terminar com o valor
+
+[atributo~=valor]	#pelo menos um deve dar match
+
+ex:
+
+>>> browser.find_elements_by_css_selector('[class="form-group"]')
+
+* o selenium não tem um seletor específico que retorna um webElement por atributo. Deve-se então utilizar um método com xpath ou com css selector
+
+
+--> Seletor universal
+
+>>> browser.find_elements_by_css_selector('*')
+
+- retorna tudo, não é interssante
+
+
+-- Seletores combinados
+pela sintaxe, pode-se combinar a seleção por tag, atributos, valores e operadores
+
+ex:
+
+>>> browser.find_elements_by_css_selector('input[type$="t"]')
+retorna uma lista de webElements que tenham a tag input, que por sua vez o atributo type um valor que termina com o caractere "t"
+
+
+>>> browser.find_elements_by_css_selector('*[for*="n"]')
+retorna uma lista de todos webElements que tenha o atributo for e com ou sem o caractere igual a "n" em alguma parte do valor 
+
+- sem o * também é equivalente
+
+é possivel realizar um filtro maior
+
+
+-> Seletores de grupos
+
+--> lista de seletores
+
+é possivel passar mais de uma tag, por exemplo:
+
+>>> browser.find_elements_by_css_selector('label', 'input')
+retorna uma lista com todos os webElements que tenham as tags label e input
+
+é possivel realizar as combinações vistas mais acima em cada argumento passado
+
+
+-> Seletores Combinadores
+
+faz a relação parental
+é efetivo quando a busca precisa ser aninhada
+
+--> Seletor: irmãos adjacentes
+
+>>> browser.find_elements_by_css_selector('elementoA' + 'elemento na mesma hierarquia que A')
+
+
+--> Seletor: geral adjacente
+ex:
+
+>>> browser.find_elements_by_css_selector('h2 ~ br')
+
+pega todos os adjacentes, independente que seja irmão
+
+?todo os adjacentes forwards apenas?
+?pega todos os de mesma hierarquia e seus descendentes?
+
+--> Seletor: filhos
+
+pega os filhos partindo de um elemento
+
+ex:
+
+>>> browser.find_elements_by_css_selector('div > br')
+retorna uma lista contendo os br que sejam filhos de algum webElement div: de todos as div, pegará os br
+
+--> Seletor: descendentes
+
+partindo de um elemento, pega todos os seu descendentes (elementos que estão aninhados)
+
+ex:
+
+>>> browser.find_elements_by_css_selector('form br')
+partindo de um form, pegará todos os br, sendo filho, neto e etc
+
+
+-- Seletor: pseudo
+
+sintaxe_de_seletor:ordem-child
+
+- primeiro filho:
+
+é possível selecionar o primeiro filho de um elemento
+
+elemento:first-child
+
+ex:
+
+>>>? browser.find_element_by_css_selector('input:first-child')
+
+
+- único filho:
+
+selecionar de dentro de um elementos que são filhos unicos dentro de outro elemento
+
+>>>? browser.find_element_by_css_selector('div :only-child')	#perceba o espaço após o div
+
+
+- último filho:
+
+elemento_buscado:last-child	#esse elemento deve existir na árvore
+
+- enésimo filho:
+
+element_buscado:nth-child(n)	#n é um inteiro referênte a posição desse elemento buscado
+
+- enésimo ultimo filho
+
+element_buscado:nth-last-child(n) 	#n é um inteiro partindo do ultimo filho, em que n = 1 é o 					ultimo filho, n=2 é o penultimo e etc. INDEPENDE DO TIPO
+
+
+.A7 EVENTOS
+
+-> DOM
+
+tag <svg> <\svg>	para tratar com imagens a ser renderizadas, podendo ter uma tag rect
+
+referência do Mozilla
+
+- eventos são o que ocorre com um webElement em resposta de uma ação do usuário
+- Event é uma API do browser e que possui interfaces que herdam suas características para finalidades específicas
+
+- Várias coisas podem acontecer na página em tempo de execução
+
+- Em relação ao DOM, o evento pode inserir ou remover elementos
+- em relação ao CSSOM, o evento pode alterar ou adicionar o estilo
+- é possível também: salvar cookies, checar a conexão com a internet, salvar msg no DB do browser e etc
+
+
+- Ao entrar em um evento, o API do browser pode se comunicar com o hardware do pc, por exemplo
+
+API de eventos:
+- no contexto do selenium, há duas características importantes dos eventos:
+
+-- tipo(type) [nome] que é o seu nome específico, ex: mouse in
+-- Alvo (target): o alvo que será afetado por esse evento
+
+bubbles, cancelable, currentTarget, defaultPrevented, timestamp, istrusted, ...
+
+- O JavaScript que é a linguagem que o browser utiliza para a realização de eventos
+
+-> API de eventos com Inline HTML
+ 
+em um web element tem dentro de sua tag um atributo com um determinado tipo (type) cujo valor é o nome de uma função. Neste caso, há um evento programado para acontecer em virtude do nome do atributo, por exemplo, onclick
+
+sempre tem um prefixo on\in
+
+- após a página ja está renderizada, ao acionar um evento, a função incide sobre o web element específico
+
+-> API de eventos com Listener	
+
+o evento não está mais dentro do html, não há mais o atributo onclick dentro da chave do web element
+
+nesse caso, o evento se dá a partir da seleção do id do web element ou outra referência, e é adicionado um Event Listener, com o nome do evento e a função que será invocada ao ser acionado
+ex:
+
+document.getElementById('btn').addEventListener('click', func)
+
+nesse caso, click é o type
+
+
+-> Focus x Blur
+
+quando é acionado o evento focus em um elemento, ocorre algo. quando esse foco é "perdido", então é acionado o evento blur
+
+*o evento pode ser disparado a partir de um elemento, porém o alvo deste evento pode ser um outro elemento
+
+
+-> Change
+
+é a mudança desencadeada quando um elemento perde o foco (blur)
+
+ex: ao inserir algo no elemento input, quando retira o foco deste elemento, um evento é disparado nesse elemento ou em outro. Ou sejam a mudança só se concretiza no blur.
+
+-> Eventos + Selenium
+
+- o selenium divide eventos do próprio selenium com eventos do browser
+
+- o selenium possui um Event Listener, cuja implementação é baseada num padrão de projeto chamado Template Method
+
+-- a principal ideia de um Template Method ou EventListener é verificar as condições de antes e depois. Se trata de estados acerca de uma ação
+
+- a ideia de antes e depois é sintetizada como o que é chamado de Hooks(ganchos)
+
+ex:
+
+webElement1(estado A) -> Click -> webElement1(estado B)
+
+esses estados são em função do click
+
+*esse é um exemplo de apenas um webElement, uma vez que um evento pode ter como target mais webElement e até mesmo todo o DOM
+
+
+-> EventListener
+
+- tem como objetivo observar o estado do WEBDRIVER em todos os momentos
+
+ex usando click():
+
+wE.before_click() -> click() -> wE.after_click()
+
+- Existem EventListeners de: (alguns exemplos de AbstractEventListener)
+
+navegação: .navigate_back; .navigate_forward; .navigate_to
+
+seletores: .find
+
+ações: .click; .change_value_of; .execute_script
+
+- É possivel criar uma classe para customizar Listeners que herdam de AbstractEventListener
+
+>>> from selenium.webdriver.support.event import AbstractEventListener
+
+>>> class tipoDeListener(AbstractEventListener):
+       ...
+
+*para poder juntar o browser instanciado com a classe de Listener é preciso ter um disparador de eventos
+
+-> Event Firing (disparador de eventos)
+
+- O web driver dispara eventos e o event listener escuta esses eventos
+
+- o event firing constrói um wrapper (envolúcro) do webdriver e dispara os eventos para o Listener.
+
+
+>>> from selenium.webdriver.support.event import EventFiringWebDriver
+
+...
+
+>>> new_driver = EventFiringWebDriver(browser, tipo_de_listener())
+
+- essa classe Event... vai juntar o browser antes instanciado e fazer com que o listener 'ouça' os eventos disparados pelo webdriver browser
+- o new_driver será o envolucro disso
+
+o código que seria feito com a instancia browser será feita agora com new_driver
+
+ex:
+
+>>> new_driver.get(url)... etc
+
+
+*é importante saber que o listener não vai catalogar a ação do evento, mas sim os estados de antes e depois. Não vai escutar ao clicar, mas sim ser avisado após o estado anterior não for o mesmo
+
+*os métodos criados na classe de listener que herda de AbstractEventListener são métodos já definidos, pois esses são os abstract methods 
+
+
+
+.HOOKS E TEMPLATE METHODS
+
+-> Template Methods
+
+- é um padrão de projetos comportamental
+- uma classe que tem um unico método e que implementa algo que seria uma interface
+- o template method é um pattern que é implementado por herença
+
+- uma classe X herda de uma classe abstrata ABC
+  - essa classe ABC não pode ser instanciada e tem um método concreto
+- logo, essa classe X não pode ser instanciada, de modo que toda classe que queira utilzar ela, deve herdar de X
+
+class X(ABC):
+
+  def template_method(self, p):
+     self.func(p)
+
+
+  @abstractmethod
+  def func(self, p):
+     ...
+
+
+os métodos são apenas definições abstratas que devem ser desenvolvidas pelaa própria classe que herda de X
+
+com isso, a ideia de template é que seja fornecido uma determinada configuração base que será 
+trabalhada de acordo com as necessidades
+
+as classes que herdam devem utilizar apenas os métodos abstrados de X, que são implementadas pelo template method de X por fim. 
+
+template method implementa os métodos abstratos
+
+*o número de métodos da classe que herdar de X deve ser o mesmo número de métodos das classes abstratas de X e de mesmo nome
+
+-> Hooks
+
+- no caso do template method, é a super classe que chama a subclasse, não o contrário, pois ela é quem estabelece a sequencia de implementação. assim, a super classe usa todas as coisas que foi implementado na sub classe
+  - isso é conhecido como Inversão de Controle ou princípio de hollywood
+
+- uma subclass pode ter um método opcional que só ela pode implementar
+
+com isso, na super classe é escrito duas linhas de códigos de métodos que PODEM SER implementados ao redor do método que TEM QUE SER implementado
+
+
+class X(ABC):
+
+  def template_method(self, p):
+	self.before_func()	#hooks
+	self.func(p)
+	self.after_func()	#hooks
+
+  @abstractmethod
+  def func(self, p):
+  	...
+
+  def before_func(self):
+	...
+
+  def after_func(self):
+	...
+
+
+- como a subclasse não pode inserir mais um método, essa possibilidade deve ser incrementada na super classe
+
+- portanto, cada classe que herda de X pode ou não utilizar before_func() e after_func() 
+
+
+
+.A8 EVENTOS 2 (ActionChains)
+
+-> Eventos de Teclado (keyboard events)
+
+referencia da Mozilla*
+
+- tres dipos de eventos :
+
+keydown (apertar uma tecla)
+keyup (soltar uma tecla)
+accesskey
+
+
+*não é possivel digitar a letra S maiúscula junto com as letras minusculas ao enviar o comando
+
+>>> browser.find_element_by_tag_name('html').send_keys('Selenium')
+
+
+- deve ser primeiro dado um key down na tecla shift ou no capslock e depois um key up no shift antes de digitar o resto
+
+--> Atributos de telcas
+
+- shiftKey
+- altKey
+- metaKey(bandeirinha Windows por exemplo)
+- ctrlKey
+
+--> métodos modificadores de estado ( getModifierState() )
+
+- CapsLock
+- shift
+- meta
+- os
+
+
+-> Selenium + Eventos
+
+eventos muitas vezes dependem de interações do usuário
+
+mouse, teclado, touch, ...
+
+--> Ações
+
+mouse: .click
+
+teclado: send_keys, submit, clear
+
+screenshot: .screenshot, .as_baase64, .as_png
+
+
+-> Action Chains (low-level API)
+
+- são maneiras de automatizar ações de baixo nível.
+
+o método send_keys() é uma série de keydown keyup
+
+- teclado: .key_down, .key_up, .send_keys, .send_keys_to_element
+
+obtendo a api low-level
+
+>>> from selenium.webdriver.common.action_chains import ActionChains
+
+>>> low = ActionChains(browser)
+>>> low.move_to_element(elemento)
+>>> for letra in texto:
+...   low.key_down(letra)
+...   low.key_up(letra)
+
+>>> low.perform() #os comandos só começam a ser implementado a partir daqui
+
+- todas as instruções de ActionChains são passadas para uma lista e que essa lista é passada para o método perform que executa todas as ações
+
+*alguns métodos apenas o webDriver pode realizar, como o .find_element, pois o ActionChains não foi feito para substituir, mas apenas para auxiliar
+
+--> métodos de movimento em Action Chains
+
+.move_by_offset
+
+.move_to_element 	#se direciona para o elemento, mas sem aplicar o focus
+
+.move_to_element_with_offset
+
+offset é quando for utilizar as coordenadas da janela 
+
+-> Biblioteca Keys
+
+- é a implementação das teclas, em que cada tecla do teclado é representada por uma string unicode
+
+>>> from selenium.webdriver.common.keys import Keys
+
+a partir dessa biblioteca é possivel ativar as teclas pelo seu 'nome' ao invés de representação por strings unicode 
+
+ex:
+
+key_down(Keys.SHIFT)	#envia a tecla shift
+
+
+-> Eventos de Mouse
+
+ActionChains de mouse:
+
+.click, .click_and_hold, .context_click, .double_click
+
+--> disparos de mouse
+
+mouseenter
+mouseleave
+click
+dblclick
+contextmenu
+
+.move_to_element = mouseenter e mouseleave
+
+- Atributos de ação
+
+shiftKey
+altKey
+metaKey
+ctrlKey
+
+o ActionChains tem um método pause() que é semelhante ao sleep
