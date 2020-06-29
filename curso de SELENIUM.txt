@@ -896,3 +896,299 @@ metaKey
 ctrlKey
 
 o ActionChains tem um método pause() que é semelhante ao sleep
+
+
+
+.A9 WAITS (pt 1)
+
+-> Carregamento da página
+
+- existe um evento atrelado ao carregamento chamado onload que atua em função do carregamento da página. Esse evento ao ser finalizado, pode mudar o DOM:
+
+-- ao entrar numa página, durante o carregamento, o DOM está de uma forma, dependendo da complexidade da página, e ao concluir o carregamento, o DOM é alterado, em que a página se encontra no seu estado estável
+
+-- essa alteração do DOM ocorre também em funções de outros eventos, como por exemplo, uma interação do usuário vai disparar um evento que altera o estado de um elemento da página
+
+--- o evento realiza um request para o backend, por exemplo, em que a página fica aguardando (on load), até que receba a response
+
+
+Modos ao carregar uma página e baixar os componentes dela:
+
+- Normal:
+> primeiro é parseado o HTML, em seguida é baixado o JS, depois é executado esse JS, e por fim é parseado novamente o HTML
+> Nesse modo, é executado uma tarefa por vez
+
+- Defer
+> Primeiro é parseado o HTML e em algum ponto desse processo é inicializado o download do script JS ao mesmo tempo em que é finalizado o parser do HTML. Por fim de todo esses dois processos é executado o JS
+
+- Async:
+> primeiro é parseado o HTML, e em algum ponto é baixado o JS durante o processo de parser HTML. Ao final desses dois processos é executado o JS e por fim é parseado novamente o HTML
+
+tanto no Async como no Defer é possivel que o navegador realize mais de uma tarefa por vez
+
+
+-> Tipos de espera
+
+--> Implícitas: espera todos os elementos, eventos, navegação com um tempo padrão
+
+>>> from selenium.webdriver import Firefox
+
+>>> f = Firefox()
+
+>>> f.implicitly_wait(30) 
+
+- vai levar 30 segundos de espera de alguma coisa acontecer, alguma coisa geral
+
+	Prós:
+- essa abordagem funciona em cenários Flaky
+- não precisa setar nada, vai ser esperada
+
+
+Contras:
+- segura a aplicação por mais tempo
+- tudo é esperado tendo o mesmo tempo como base. não dá para saber se algo tem prioridade de tempo em relação a outras coisas
+- não funciona para elementos específicos
+- se algo der errado, vai demorar o tempo do wait para saber
+
+
+--> Explícitas
+
+- o selenium disponibiliza um range de waits prontos nesse sentido
+- pode ser customizado em tipos de espera 
+- é reutilizável
+
+
+-> WebDriverWait
+ex:
+
+>>> from selenium.webdriver.support.ui import WebDriverWait
+
+>>> wdw = WebDriverWait(
+		driver,
+		timeout,
+		poll_frequency=0.5,
+		ignored_exceptions=None
+)
+
+args:
+
+- driver: é o próprio WebDriver
+- timeout: tempo de espera até o erro
+- poll_frequency: tempo entre uma tentativa e outra
+- ignored_exceptions: lista de Exception a serem ignoradas
+
+Método until: executa até que o `Callable` retorne True ou até estourar o `timeout`
+
+wdw.until(
+	Callable, 
+	mensage
+)
+
+args:
+
+- Callable: operação invocável que sera executada, retornando True
+- mensage: mensagem caso ocorra o erro
+
+*o callable é obrigatório
+
+
+Método until_not: é o inverso, em que espera até o `callable` retorne False
+
+exemplo:
+
+>>> from selenium.webdriver import Firefox
+>>> from selenium.webdriver.support.ui import WebDriverWait
+
+>>> browser = Firefox()
+>>> wdw = WebDriverWait(browser, timeout=30)
+wdw.until(<função>)
+
+
+-> Esperas personalizadas
+
+exemplo:
+#incio script
+def esperar_botao(webdriver):
+  elements =
+webdriver.find_elements_by_css_selector('button')
+  return bool(elements)
+
+#a função acima vai apenas procurar o elemento button e na ocorrência deste, vai retornar um bool
+
+wdw.until(esperar_botao)
+#vai realizar a função até estourar o timeout parametrizado
+
+browser.find_element_by_tag_name('button').click()
+
+#fim script
+
+*observações:
+
+- until e until_not sempre passam o webdriver como argumento e SOMENTE ELE quem passa, ou seja, não se deve passar o driver para a função, pois o until e not_until quem passa o drive que recebeu para a função
+
+- a função em questão sempre deve retornar True ou False
+
+
+-> functools partial
+
+- partial é uma função da biblioteca functools
+- ela é usada para simplificar a chamada da função, de modo em que se é possível utilizar um parametro
+
+ex:
+
+#inicio script
+
+from functools import partial
+
+def soma(x, y):
+	return x + y
+
+soma_de_2 = partial(soma, x=2)
+
+#dessa forma, está criado uma nova função, em que se fixando um dos parâmetros, é possivel chamar a função soma com apenas um parâmetro
+#fim script
+
+exemplo de aplicação após a definição e manipulação:
+
+>>> soma_de_2(3)
+'5'
+
+com isso, é possivel chamar a função sempre em que o retorno será o parâmetro passado somado de 2
+
+
+-> By
+- o By nos auxilia a deixar o código mais "assertivo". Ele é comumente usado em conjunto com `wb.find_element`. Assim, nos ajuda a parametrizar mais as nossas funções
+
+exemplo de uma aplicação que se pode melhorar:
+
+def esperar_elemento(
+		element,
+		web_driver
+):	if web_driver.find_elements_by_css_selector(element):
+		return True
+	return False
+
+
+- o By serve como um seletor dinâmico
+
+exemplo da função melhorada:
+
+#inicio trecho do script
+
+from selenium.webdriver.commom.by import By
+
+def esperar_elemento(by, element, web_driver):
+	return bool(web_driver.find_elements(by, element))
+
+wdw = WebDriverWait(f, 30)
+wdw.until(partial(esperar_elemento, By.CSS_SELECTOR, 'selector'))
+
+#fim script
+
+- o By é uma classe, que possui atributos que servem para generalizar o uso do método do web driver que é o .find_elements()
+
+
+-> Espera com classes
+
+aqui evitamos o uso do partial usando `__call__`
+
+ex:
+#inicio script
+
+class EsperarElemento:
+	def __init__(self, by, selector):
+	self.locator = (by, selector)
+
+	def __call__(self, driver):
+		if web_driver.find_elements(*locator):
+			return True
+		return False
+
+web_driver_wait.until(
+			EsperarElemento(By.Id, 'meu_id')
+
+)
+
+
+- os waits que o selenium implementa são por classes
+
+#fim script
+
+
+-> Locators
+
+Locators são maneiras de unir o By a string do elemento
+
+porém o conceito é trazido de selenium java e faz pouco ou nenhum sentido usando em python
+
+resumidamente um Locator é uma tupla com o By eaa string do elemento
+
+ex da sentença acima:
+from selenium.webdriver.common.by import By
+
+locator = (By.CSS_SELECTOR, 'div.minha_classe')
+
+
+
+a maioria das implementações dos waits padrão que o selenium disponibiliza são em locators
+
+exemplo:
+
+#inicio script
+
+from functools import partial
+from seleenium.webdriver.common.by import By
+
+def esperar_elemento(locator, web_driver):
+	if web_driver.find_elements(*locator):
+		return True
+	return False
+
+locator = (By.CSS_SELECTOR, 'div.minha_classe')
+
+wdw = WebDriverWait(f, 30)
+
+wdw.until(
+	partial(
+		esperar_elemento(By.ID, 'id_do_elemento')	
+	)
+)
+
+#fim script
+
+
+- é possível que elementos tenham um atributo que anula os eventos de click
+
+no caso seria algo do tipo:
+
+.unclick {
+	pointer-events: none
+}
+
+- nesse caso, o método .click() não poderia ser realizado, podendo até mesmo subir uma exception caso feito
+
+
+o contrário disso seria algo do tipo:
+
+	pointer-events: visible
+
+- dessa forma, o elemento fica visivel para o evento de interação com click
+
+
+
+--> Esperando elemento ativo:
+
+embora seja possível ver o elemento, ele não tem as características que precisamos para clicar, ou seja, não aceita eventos de click
+
+precisamos esperar o elemento estar ativo is_enabled
+
+exemplo de implementação:
+
+def esperar_ser_clicavel(
+	element, web_driver
+):
+	print(f'esperando {element}')
+	elements = web_driver.find_elements_by_css_selector(element)
+	if elements:
+		return elements[0].is_enabled()
+	return False
