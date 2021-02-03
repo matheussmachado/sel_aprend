@@ -1,12 +1,12 @@
-.A3 MINHA PRIMEIRA AUTOMAÇÃO
+.A3 MINHA PRIMEIRA AUTOMAï¿½ï¿½O
 
-O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada WEB-DRIVER que interage com o NAVEGADOR especifico
+O cï¿½digo PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada WEB-DRIVER que interage com o NAVEGADOR especifico
 
-*PARA RODAR OS CÓDIGOS DEVE SER PELO TERMINAL E DEVE ESTÁ ATIVADO NA VENV POIS O SELENIUM ESTA´INSTALADO LÁ
+*PARA RODAR OS Cï¿½DIGOS DEVE SER PELO TERMINAL E DEVE ESTï¿½ ATIVADO NA VENV POIS O SELENIUM ESTAï¿½INSTALADO Lï¿½
 
 
 >>> from selenium.webdriver import Firefox
->>> browser = Firefox()		#um objeto Firefox é criado e ao rodar o código, abre um navegador 				do firefox
+>>> browser = Firefox()		#um objeto Firefox Ã© criado e ao rodar o cï¿½digo, abre um navegador do firefox
 >>> browser.quit()	#fecha o navegador aberto
 
 -> Elementos html
@@ -20,12 +20,12 @@ O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada W
 
 -> DOM (Document Object Model)
 
-- dá a árvore de uma janela e seus objetos e seus elementos 
+- dï¿½ a ï¿½rvore de uma janela e seus objetos e seus elementos 
 
 
 -> Selenium
 
-- a visão da arquitetura pelo selenium
+- a visï¿½o da arquitetura pelo selenium
 
 >>> browser.get('http://ddg.gg')	#acessa a pagina da url passada no argumento
 
@@ -33,9 +33,9 @@ O código PYTHON importa a biblioteca do SELENIUM que possui uma engine chamada W
 
 >>> p.click() 	# clica no elemento
 
->>> p.text 	#retorna o conteúdo de texto daquela tag
+>>> p.text 	#retorna o conteï¿½do de texto daquela tag
 
-*dependendo da situação é importante ter um delay (sleep) para obter umm conteúdo
+*dependendo da situaÃ§Ã£o Ã© importante ter um delay (sleep) para obter umm conteÃºdo
 
 >>> p = browser.find_elements_by_tag_name('<nomeDaTag>')    #retorna uma lista com web elements, 							    	    atentando ao s de elements
 
@@ -47,22 +47,22 @@ retorna o valor do atributo
 
 
 
-.A4 NAVEGAÇÃO E ATRIBUTOS
+.A4 NAVEGAï¿½ï¿½O E ATRIBUTOS
 
 -> Busca aninhada
 
-o conteúdo de uma tag pode ser outra tag
+o conteï¿½do de uma tag pode ser outra tag
 
-- as tags estão aninhadas
+- as tags estï¿½o aninhadas
 - o DOM hierarquiza a estrutura de ninho dentre as tags
 
 -> Encontrar o elemento especifico
 
 ul = brws.find_element_by_tag_name('ul')	#vai pegar o primeiro elemento ul na hierarquia DOM
 
-li = ul.find_elements_by_tag_name('li') 	#dentro de ul há outros webElement do tipo li que 							podem ser acessados, pois 'li' está aninhado em'ul'
+li = ul.find_elements_by_tag_name('li') 	#dentro de ul hÃ¡ outros webElement do tipo li que podem ser acessados, pois 'li' estÃ¡ aninhado em'ul'
 
-li[0].find_elements_by_tag_name('a')  #continua o ciclo, obtendo o elemento âncora dentro de li[0]
+li[0].find_elements_by_tag_name('a')  #continua o ciclo, obtendo o elemento Ã¢ncora dentro de li[0]
 
 
 -> Atributos
@@ -75,29 +75,29 @@ seus atributos:
 - text (esse mais ou menos)
 
 >>> a.get_attribute('href')
-#retorna o link, que é o valor do atributo href do objeto webElement a (string)
+#retorna o link, que Ã© o valor do atributo href do objeto webElement a (string)
 
-com o href é possivel diferenciar links das paginas
+com o href Ã© possivel diferenciar links das paginas
 
 >>> a.text
 retorna o content de texto (string)
 
 
--> Navegação:
+-> NavegaÃ§Ã£o:
 
 estrutura da pagina 
 
---> Histórico da janela aberta no momento:
+--> HistÃ³rico da janela aberta no momento:
 
-se comporta como uma pilha, em que o ultimo site acessado sempre ocupa a posição 0 do histórico
+se comporta como uma pilha, em que o ÃšLTIMO site acessado sempre ocupa a POSIÃ‡ÃƒO ZERO do histï¿½rico
 
-browser.back()		#volta para o penultimo elemento do histórico
-browser.forward()	#avança para o próximo elemento em que se encontra o site do histórico
+browser.back()		#volta para o penultimo elemento do histï¿½rico
+browser.forward()	#avanï¿½a para o prï¿½ximo elemento em que se encontra o site do histï¿½rico
 
-#não faz uma nova requisição, mas sim utiliza os dados em cache, do ultimo estado em que estava
+#nï¿½o faz uma nova requisiï¿½ï¿½o, mas sim utiliza os dados em cache, do ultimo estado em que estava
 
-*esse histórico é referente a janela aberta no momento, e não ao histórico completo de navagação do navegador. O que ocorre é que o JS altera o estado da url da janela aberta, pegando tudo o que tá dentro do contexto dessa janela aberta dinamicamente. 
-*O histórico na verdade é um histórico de modificações dessa janela em especifica
+*esse histï¿½rico ï¿½ referente a janela aberta no momento, e nï¿½o ao histï¿½rico completo de navagaï¿½ï¿½o do navegador. O que ocorre ï¿½ que o JS altera o estado da url da janela aberta, pegando tudo o que tï¿½ dentro do contexto dessa janela aberta dinamicamente. 
+*O histï¿½rico na verdade ï¿½ um histï¿½rico de modificaï¿½ï¿½es dessa janela em especifica
 
 
 --> Location:
@@ -117,8 +117,8 @@ netloc: selenium.dunossauro.live
 
 path do arquivo: aula_04.html
 
-- o selenium só tem a função current_url para o python
-- deve-se utilizar a biblioteca URLlib para obter mais informações de uma url que o selenium não realiza
+- o selenium sÃ³ tem a funÃ§Ã£o current_url para o python
+- deve-se utilizar a biblioteca URLlib para obter mais informaÃ§Ãµes de uma url que o selenium nï¿½o realiza
 
 >>> from urllib.parse import urlparse
 >>> urlparse(browser.current_url)
@@ -126,9 +126,9 @@ retorna os elementos da url citadas acima e mais
 
 
 >>> browser.refresh()
-atualiza a pagina em função do location
+atualiza a pagina em funï¿½ï¿½o do location
 
-* ao dar refresh na pagina, esse refresh é contabilizado e sua url é pilhada no histórico, pois ele cria uma nova requisição
+* ao dar refresh na pagina, esse refresh Ã© contabilizado e sua url Ã© pilhada no histÃ³rico, pois ele cria uma nova requisiï¿½ï¿½o
 
 
 >>> browser.title 
@@ -136,7 +136,7 @@ retorna o title da pagina
 
 
 >>> from pprint import pprint
-vai importar uma função que realiza um print mais visivel e automatico
+vai importar uma funï¿½ï¿½o que realiza um print mais visivel e automatico
 
 
 
@@ -144,49 +144,49 @@ vai importar uma função que realiza um print mais visivel e automatico
 
 - Navegando e extraindo dados de documentos html
 
--> XML Path Language: linguagem de consulta para selecionar e navegar por nós de um documento xml
+-> XML Path Language: linguagem de consulta para selecionar e navegar por nï¿½s de um documento xml
 
-xml: formato baseado em texto para REPRESENTAÇÕES DE INFORMAÇÕES ESTRUTURADAS, por exemplo: documentos, configurações, livros, transações e etc
+xml: formato baseado em texto para REPRESENTAï¿½ï¿½ES DE INFORMAï¿½ï¿½ES ESTRUTURADAS, por exemplo: documentos, configuraï¿½ï¿½es, livros, transaï¿½ï¿½es e etc
 
 o xml estrutura de modo parecido como o html
 
-- casos de uso: arquivo de configuração, troca de mensagens entre aplicações, padrão para documentos (open document format)
+- casos de uso: arquivo de configuraï¿½ï¿½o, troca de mensagens entre aplicaï¿½ï¿½es, padrï¿½o para documentos (open document format)
 
 - muitas api retornam um xml
 
-- no python há libs para tratar xml
+- no python hï¿½ libs para tratar xml
 
 -> Parsel: lib para extrair dados de html, usado no Scrapy
 
 >>> from parsel import Selector
->>> response = Selector(text=<arquivo>) #criar um objeto Seletor em que o arquivo é html
+>>> response = Selector(text=<arquivo>) #criar um objeto Seletor em que o arquivo ï¿½ html
 
 >>> response.xpath('/html')
 retorna um objeto de caminho absoluto partindo do elemento html
 
 >>> response.xpath('/html/head')
-RETORNA um OBJETO de caminho em que o elemento head está aninhado ao html
+RETORNA um OBJETO de caminho em que o elemento head estï¿½ aninhado ao html
 
 >>> response.xpath('/html/head').getall() 
-RETORNA uma LISTA contendo os conteúdo desse path
+RETORNA uma LISTA contendo os conteï¿½do desse path
 
 >>> response.xpath('/html/head').get()
-RETORNA o CONTEÚDO
+RETORNA o CONTEï¿½DO
 
-*get retorna None se o path não for passado corretamente:
+*get retorna None se o path nï¿½o for passado corretamente:
 
-ex:	response.xpath('/title').get()	#title é um elemento filho
+ex:	response.xpath('/title').get()	#title ï¿½ um elemento filho
 
 para isso, deve-se utilizar o //
 
->>> response.xpath('//title').get()	#pega TODOS os CONTEÚDOS title que houver no documento
+>>> response.xpath('//title').get()	#pega TODOS os CONTEï¿½DOS title que houver no documento
 
->>> response.xpath('//ul/*').getall()	#pega TODOS os CONTEÚDOS LOGO A SEGUIR de todos os ul
+>>> response.xpath('//ul/*').getall()	#pega TODOS os CONTEï¿½DOS LOGO A SEGUIR de todos os ul
 
->>> response.xpath('//ul//*).getall()	#pega TODOS OS CONTEÚDOS ANINHADOS ao elemento passado
+>>> response.xpath('//ul//*).getall()	#pega TODOS OS CONTEï¿½DOS ANINHADOS ao elemento passado
 
 -> pegar elementos indexados
-*OS INDICES AQUI COMEÇAM EM 1
+*OS INDICES AQUI COMEï¿½AM EM 1
 
 >>> response.xpath('//ol/li[2]').getall()
 retorna OS SEGUNDOS li de cada ol existente
@@ -199,28 +199,28 @@ de todos os ol obtido, vai pegar do primeiro, o segundo li
 
 
 >>> response.xpath('//h1/text()').getall()
-retorna a lista, contendo os conteúdo de todos h1 obtidos
+retorna a lista, contendo os conteï¿½do de todos h1 obtidos
 
 
 >>> respones.xpat('//h1//text()').getall()
-retorna a lista contendo todos os conteúdos de todos os h1
+retorna a lista contendo todos os conteï¿½dos de todos os h1
 
 >>> responses.xpath('(//ul/li)[last()]).getall()
-retorna uma lista contendo o último li aninhado no ultimo ul
+retorna uma lista contendo o ï¿½ltimo li aninhado no ultimo ul
 
-- no Elements do  DevTools, é possivel copiar o xpath de um dado elemento. Ao colar do clipboard, a string retornada é o path absoluto do elemento
+- no Elements do  DevTools, ï¿½ possivel copiar o xpath de um dado elemento. Ao colar do clipboard, a string retornada ï¿½ o path absoluto do elemento
 
-*não é interessante utilizar um path absoluto, pois a pagina pode mudar
+*nï¿½o ï¿½ interessante utilizar um path absoluto, pois a pagina pode mudar
 
--> é possivel buscar pelos atributos
+-> ï¿½ possivel buscar pelos atributos
 
 >>> response.xpath('//h1/@data-section').getall()
-retorna uma lista contendo os VALORES dos ATRIBUTOS data-section que estão na tag h1. é mais um caso de aninhamento, devido ao /
+retorna uma lista contendo os VALORES dos ATRIBUTOS data-section que estï¿½o na tag h1. ï¿½ mais um caso de aninhamento, devido ao /
 
 >>> response.xpath('//h1[@data-section]').getall()
-retorna uma lista contendo todos os h1 cujo o atributo é data-section. aqui é um caso de referência, devido ao []
+retorna uma lista contendo todos os h1 cujo o atributo ï¿½ data-section. aqui ï¿½ um caso de referï¿½ncia, devido ao []
 
--> Busca no conteúdo de texto
+-> Busca no conteï¿½do de texto
 
 >>> response.xpath('//li[contains(text(), 'forno')]').getall()
 retorna uma lista, conteudo os li cujo em seu texto haja a palavra forno
@@ -231,7 +231,7 @@ retorna uma lista contendo todos os li em que haja a palavra 'leite', seja no te
 
 
 >>> response.xpath('//li[not(contains(., 'leite')]').getall()
-retorna todos os li em que NÃO possua a palavra leite, onde quer que seja
+retorna todos os li em que Nï¿½O possua a palavra leite, onde quer que seja
 
 
 >>> response.xpath('//h1[@data-qtde!='1']').getall()
@@ -240,37 +240,37 @@ retorna todos os h1 em que o valor do atributo data-qtde seja DIFERENTE de 1
 - operadores de > e < funciona tbm
 
 
--> Nó
+-> NÃ³
 
-um elemento possui nós, que são as relações que possuem com os elementos ao seu redor
+um elemento possui nï¿½s, que sï¿½o as relaï¿½ï¿½es que possuem com os elementos ao seu redor
 
-- nó child: são as relações dos elementos que estão aninhados com esse elemento
-- nós parents: são os elementos em que ele esta aninhado
-- nós siblins: são os elementos que estão na mesma hierarquia do ninho em relação ao parent
-  - haverá os preceding siblings e foward siblings relativo a um elemento
-- nós ancestors: são os elementos que são os ultimos parent daquele nó de siblings alinhados 
+- nï¿½ child: sï¿½o as relaï¿½ï¿½es dos elementos que estï¿½o aninhados com esse elemento
+- nï¿½s parents: sï¿½o os elementos em que ele esta aninhado
+- nï¿½s siblins: sï¿½o os elementos que estï¿½o na mesma hierarquia do ninho em relaï¿½ï¿½o ao parent
+  - haverï¿½ os preceding siblings e foward siblings relativo a um elemento
+- nï¿½s ancestors: sï¿½o os elementos que sï¿½o os ultimos parent daquele nï¿½ de siblings alinhados 
 
-   por exemplo: um parent de um elemento é tbm seu ancestor, bem como o parent do seu parent e assim vai
+   por exemplo: um parent de um elemento ï¿½ tbm seu ancestor, bem como o parent do seu parent e assim vai
 
 
-- self é onde o seu seletor está direcionado
+- self ï¿½ onde o seu seletor estï¿½ direcionado
 
 >>> response.xpath(//h1[@data-section='ingredients']).getall()
-retorna a lista contendo  o h1 em que o seu atributo data-section é ingredients 
-esse h1 é o self (?)
+retorna a lista contendo  o h1 em que o seu atributo data-section ï¿½ ingredients 
+esse h1 ï¿½ o self (?)
 
--> Buscas por nós
+-> Buscas por nï¿½s
 
 >>> response.xpath('//h1[@data-section='ingredients']/parents::div').getall()
 retorna a lista contendo o parent e seu conteudo, do h1 passado
 
 
 >>> response.xpath('//h1[@data-section="ingredients"]/following-sibling::ul/li').getall()
-retorna uma lista: retorna todos os li aninhados aos ul tais que são irmãos seguintes do self, que no caso é o h1 passado
+retorna uma lista: retorna todos os li aninhados aos ul tais que sï¿½o irmï¿½os seguintes do self, que no caso ï¿½ o h1 passado
 
 
 >>> response.xpath("//h2[contains(text(), 'Pudim') and contains(./preceding-sibling::h1/data-section, 'ingredients')]/following-sibling::ul/li").getall()
-retorna uma lista contendo os li em que: partindo de h2 que em seu texto possua a string 'Pudim' e contenha um irmão anterior tal que possua um h1 em que no seu atributo data-section tenha o valor 'ingredients'. O resultado será um elemento selecionado, que a partir dele vai se buscar de seus irmãos seguintes os li aninhados ao ul
+retorna uma lista contendo os li em que: partindo de h2 que em seu texto possua a string 'Pudim' e contenha um irmï¿½o anterior tal que possua um h1 em que no seu atributo data-section tenha o valor 'ingredients'. O resultado serï¿½ um elemento selecionado, que a partir dele vai se buscar de seus irmï¿½os seguintes os li aninhados ao ul
 
 
 
@@ -280,24 +280,24 @@ retorna uma lista contendo os li em que: partindo de h2 que em seu texto possua 
 -> Atributos globais
 
 atributos comuns entre tags do html
---> obter webElement através de atributos, independente da tag
+--> obter webElement atravï¿½s de atributos, independente da tag
 
-- nesse contexto, um dos atributo pode ser o id, que supõe-se ser único
+- nesse contexto, um dos atributo pode ser o id, que supï¿½e-se ser ï¿½nico
 
 >>> browser.find_element_by_id('<valor>')
-esse seletor retorna o webElement cujo o id é igual ao parametro passado
+esse seletor retorna o webElement cujo o id ï¿½ igual ao parametro passado
 
-- classes: se refere a um grupo que possuem características em comum
+- classes: se refere a um grupo que possuem caracterï¿½sticas em comum
 
 >>> browser.find_element_by_class_name('<valor>')
-retorna o primeiro webElement cujo atributo classe é igual ao parametro
+retorna o primeiro webElement cujo atributo classe ï¿½ igual ao parametro
 
 
 >>> browser.find_elements_by_class_name('<valor>')
 retorna a lista contendo TODOS os webElemets que correspondem a essa classe
 
 
-com isso, é possível obter uma busca mais filtrada do webElement, conseguindo também acessar as tags com o método find_elements_by_tag_name() desse webElement ou qualquer de modo aninhado obter outros webElements e também obter desses seus atributos.
+com isso, ï¿½ possï¿½vel obter uma busca mais filtrada do webElement, conseguindo tambï¿½m acessar as tags com o mï¿½todo find_elements_by_tag_name() desse webElement ou qualquer de modo aninhado obter outros webElements e tambï¿½m obter desses seus atributos.
 
 alguns atributos:
 
@@ -307,27 +307,27 @@ alguns atributos:
 
 - hidden: oculta o elemento
 
-- name: referencia o nome do campo preenchido do formulário 
+- name: referencia o nome do campo preenchido do formulï¿½rio 
 
 -> Elementos Web
 
 --> input
 
-elemento web em que o usuário possa interagir com a página inserindo ou selecionando dados.
+elemento web em que o usuï¿½rio possa interagir com a pï¿½gina inserindo ou selecionando dados.
 
 
 >>> browser.find_element_by_name('<valor>')
-retorna o webElement que possua no atributo name o valor passado. esse seletor é util pois os inputs de formulários costumam possuir nomes
+retorna o webElement que possua no atributo name o valor passado. esse seletor ï¿½ util pois os inputs de formulï¿½rios costumam possuir nomes
 
 seja um webElement obtido por find_element_by_name():
 
 >>> element = find_element_by_name('<nome>')
 >>> element.send_keys('<string>')
-aqui irá enviar a string passada para o campo input desse element
+aqui irï¿½ enviar a string passada para o campo input desse element
 
 
 --> Forms
-são elementos que aninham os elementos responsáveis pelos inputs dos usuários.
+sï¿½o elementos que aninham os elementos responsï¿½veis pelos inputs dos usuï¿½rios.
 
 
 <form target=valor method=valor action=valor> 
@@ -338,25 +338,25 @@ são elementos que aninham os elementos responsáveis pelos inputs dos usuários.
 
 atributos de forms:
 
-- target: redireciona um conteúdo da pagina, após o submit
+- target: redireciona um conteï¿½do da pagina, apï¿½s o submit
 
 valores:
 	_self abre na mesma janela, na current_url
 
 	_blank abre em outra janela
 
-- method: se o submit será enviado pela url ou 'escondido'
+- method: se o submit serï¿½ enviado pela url ou 'escondido'
 
 valores:	
 	get: insere na url
 
-	post: põe dentro de um pacote e envia pelo protocolo (por request)
+	post: pï¿½e dentro de um pacote e envia pelo protocolo (por request)
 
-- action: onde será feito o request, carregando outra url ou carregando a atual
+- action: onde serï¿½ feito o request, carregando outra url ou carregando a atual
 
 valores:
-	url: uma outra url que será feita a request
-	#: na current_url que será feita
+	url: uma outra url que serï¿½ feita a request
+	#: na current_url que serï¿½ feita
 
 
 *o form pode estar dentro de um fieldset, como de costume
@@ -364,36 +364,36 @@ valores:
 
 -> query string 
 
-- é uma string adicionada na url após o submit a qual será realizada uma query dos dados passados no form
+- Ã© uma string adicionada na url apï¿½s o submit a qual serï¿½ realizada uma query dos dados passados no form
 
-- começa com ? e a cada valor do input é separado por &
+- comeÃ§a com ? e a cada valor do input Ã© separado por &
 
 - para cada input tem: <valor de name>=<valor do input>	
 
-- alguns caracteres são alterados, por exemplo o @ é %40 que corresponde ao caractere do browser
+- alguns caracteres sï¿½o alterados, por exemplo o @ ï¿½ %40 que corresponde ao caractere do browser
 
-- geralmente o resultado desse submit é um json com as chaves sendo o nome do atributo name e seus valores o próprio valor do input
-  - com isso, para decodificar esse json no python, deve-se utilizar o modulo json e chamar o método loads()
+- geralmente o resultado desse submit ï¿½ um json com as chaves sendo o nome do atributo name e seus valores o prï¿½prio valor do input
+  - com isso, para decodificar esse json no python, deve-se utilizar o modulo json e chamar o mï¿½todo loads()
 
 
 SELETORES:
 
-- maneiras de encontrar elementos dentro de uma estrutura html ou xml que tem uma sintaxe própria e nomenclaturasa próprias.   
+- maneiras de encontrar elementos dentro de uma estrutura html ou xml que tem uma sintaxe prï¿½pria e nomenclaturasa prï¿½prias.   
 
-- Basicamente, é uma maneira e seleccionar elementos usando os atributos dos próprios elementos
+- Basicamente, Ã© uma maneira e selecionar elementos usando os atributos dos prï¿½prios elementos
 
-ex: métodos como find_element_by_class e etc
+ex: mï¿½todos como find_element_by_class e etc
 
-- selecionar um webElement em função de uma característica passada e que este elemento possui, sendo elas atributos, valores de atributos, parentescos entre outros webElements
+- selecionar um webElement em funÃ§Ã£o de uma caracterï¿½stica passada e que este elemento possui, sendo elas atributos, valores de atributos, parentescos entre outros webElements
 
-- Estes seletores são utilizados para fazer guias de estilo css, por exemplo
+- Estes seletores sï¿½o utilizados para fazer guias de estilo css, por exemplo
 
 
 -> CSS Selector
 
 4 Tipos de seletores:
 
-- básicos:
+- bï¿½sicos:
   id
   tipo[tag]
   classe
@@ -408,7 +408,7 @@ ex: métodos como find_element_by_class e etc
 
 --> Seletores por id:
 
-a sintaxe dos argumentos é como em CSS
+a sintaxe dos argumentos Ã© como em CSS
 
 >>> browser.find_element_by_css_selector('#<valor de um id>')
 
@@ -439,11 +439,11 @@ ex:
 
   - [atributo operador valor]
 
-- utiliza padrões como em regex
+- utiliza padrï¿½es como em regex
 
 [atributo=valor]	#igual\exato (match)
 
-[atributo*=valor]	#deve ocorrer algo como valor ou não
+[atributo*=valor]	#deve ocorrer algo como valor ou nï¿½o
 
 [atributo|=valor]	#o match exato da palavra deve ocorrer no inicio ou em algum lugar
 
@@ -458,18 +458,18 @@ ex:
 
 >>> browser.find_elements_by_css_selector('[class="form-group"]')
 
-* o selenium não tem um seletor específico que retorna um webElement por atributo. Deve-se então utilizar um método com xpath ou com css selector
+* o selenium nï¿½o tem um seletor especï¿½fico que retorna um webElement por atributo. Deve-se entï¿½o utilizar um mï¿½todo com xpath ou com css selector
 
 
 --> Seletor universal
 
 >>> browser.find_elements_by_css_selector('*')
 
-- retorna tudo, não é interssante
+- retorna tudo, nï¿½o ï¿½ interssante
 
 
 -- Seletores combinados
-pela sintaxe, pode-se combinar a seleção por tag, atributos, valores e operadores
+pela sintaxe, pode-se combinar a seleÃ§Ã£o por tag, atributos, valores e operadores
 
 ex:
 
@@ -480,29 +480,29 @@ retorna uma lista de webElements que tenham a tag input, que por sua vez o atrib
 >>> browser.find_elements_by_css_selector('*[for*="n"]')
 retorna uma lista de todos webElements que tenha o atributo for e com ou sem o caractere igual a "n" em alguma parte do valor 
 
-- sem o * também é equivalente
+- sem o * tambï¿½m ï¿½ equivalente
 
-é possivel realizar um filtro maior
+Ã© possivel realizar um filtro maior
 
 
 -> Seletores de grupos
 
 --> lista de seletores
 
-é possivel passar mais de uma tag, por exemplo:
+Ã© possivel passar mais de uma tag, por exemplo:
 
 >>> browser.find_elements_by_css_selector('label', 'input')
 retorna uma lista com todos os webElements que tenham as tags label e input
 
-é possivel realizar as combinações vistas mais acima em cada argumento passado
+ï¿½ possivel realizar as combinaÃ§Ãµes vistas mais acima em cada argumento passado
 
 
 -> Seletores Combinadores
 
-faz a relação parental
-é efetivo quando a busca precisa ser aninhada
+faz a relaÃ§Ã£o parental
+Ã© efetivo quando a busca precisa ser aninhada
 
---> Seletor: irmãos adjacentes
+--> Seletor: irmï¿½os adjacentes
 
 >>> browser.find_elements_by_css_selector('elementoA' + 'elemento na mesma hierarquia que A')
 
@@ -512,7 +512,7 @@ ex:
 
 >>> browser.find_elements_by_css_selector('h2 ~ br')
 
-pega todos os adjacentes, independente que seja irmão
+pega todos os adjacentes, independente que seja irmï¿½o
 
 ?todo os adjacentes forwards apenas?
 ?pega todos os de mesma hierarquia e seus descendentes?
@@ -524,16 +524,16 @@ pega os filhos partindo de um elemento
 ex:
 
 >>> browser.find_elements_by_css_selector('div > br')
-retorna uma lista contendo os br que sejam filhos de algum webElement div: de todos as div, pegará os br
+retorna uma lista contendo os br que sejam filhos de algum webElement div: de todos as div, pegarÃ¡ os br
 
 --> Seletor: descendentes
 
-partindo de um elemento, pega todos os seu descendentes (elementos que estão aninhados)
+partindo de um elemento, pega todos os seu descendentes (elementos que estÃ£o aninhados)
 
 ex:
 
 >>> browser.find_elements_by_css_selector('form br')
-partindo de um form, pegará todos os br, sendo filho, neto e etc
+partindo de um form, pegarÃ¡ todos os br, sendo filho, neto e etc
 
 
 -- Seletor: pseudo
@@ -542,7 +542,7 @@ sintaxe_de_seletor:ordem-child
 
 - primeiro filho:
 
-é possível selecionar o primeiro filho de um elemento
+Ã© possï¿½vel selecionar o primeiro filho de um elemento
 
 elemento:first-child
 
@@ -551,24 +551,24 @@ ex:
 >>>? browser.find_element_by_css_selector('input:first-child')
 
 
-- único filho:
+- Ãºnico filho:
 
-selecionar de dentro de um elementos que são filhos unicos dentro de outro elemento
+selecionar de dentro de um elementos que sï¿½o filhos unicos dentro de outro elemento
 
->>>? browser.find_element_by_css_selector('div :only-child')	#perceba o espaço após o div
+>>>? browser.find_element_by_css_selector('div :only-child')	#perceba o espaÃ§o apÃ³s o div
 
 
-- último filho:
+- Ãºltimo filho:
 
-elemento_buscado:last-child	#esse elemento deve existir na árvore
+elemento_buscado:last-child	#esse elemento deve existir na ï¿½rvore
 
-- enésimo filho:
+- enï¿½simo filho:
 
-element_buscado:nth-child(n)	#n é um inteiro referênte a posição desse elemento buscado
+element_buscado:nth-child(n)	#n ï¿½ um inteiro referï¿½nte a posiï¿½ï¿½o desse elemento buscado
 
-- enésimo ultimo filho
+- enï¿½simo ultimo filho
 
-element_buscado:nth-last-child(n) 	#n é um inteiro partindo do ultimo filho, em que n = 1 é o 					ultimo filho, n=2 é o penultimo e etc. INDEPENDE DO TIPO
+element_buscado:nth-last-child(n) 	#n ï¿½ um inteiro partindo do ultimo filho, em que n = 1 ï¿½ o 					ultimo filho, n=2 ï¿½ o penultimo e etc. INDEPENDE DO TIPO
 
 
 .A7 EVENTOS
@@ -577,80 +577,80 @@ element_buscado:nth-last-child(n) 	#n é um inteiro partindo do ultimo filho, em 
 
 tag <svg> <\svg>	para tratar com imagens a ser renderizadas, podendo ter uma tag rect
 
-referência do Mozilla
+referï¿½ncia do Mozilla
 
-- eventos são o que ocorre com um webElement em resposta de uma ação do usuário
-- Event é uma API do browser e que possui interfaces que herdam suas características para finalidades específicas
+- eventos sï¿½o o que ocorre com um webElement em resposta de uma aÃ§Ã£o do usuï¿½rio
+- Event Ã© uma API do browser e que possui interfaces que herdam suas caracterï¿½sticas para finalidades especï¿½ficas
 
-- Várias coisas podem acontecer na página em tempo de execução
+- Vï¿½rias coisas podem acontecer na pï¿½gina em tempo de execuÃ§Ã£o
 
-- Em relação ao DOM, o evento pode inserir ou remover elementos
-- em relação ao CSSOM, o evento pode alterar ou adicionar o estilo
-- é possível também: salvar cookies, checar a conexão com a internet, salvar msg no DB do browser e etc
+- Em relaÃ§Ã£o ao DOM, o evento pode inserir ou remover elementos
+- em relaÃ§Ã£o ao CSSOM, o evento pode alterar ou adicionar o estilo
+- Ã© possï¿½vel tambï¿½m: salvar cookies, checar a conexï¿½o com a internet, salvar msg no DB do browser e etc
 
 
 - Ao entrar em um evento, o API do browser pode se comunicar com o hardware do pc, por exemplo
 
 API de eventos:
-- no contexto do selenium, há duas características importantes dos eventos:
+- no contexto do selenium, hï¿½ duas caracterï¿½sticas importantes dos eventos:
 
--- tipo(type) [nome] que é o seu nome específico, ex: mouse in
--- Alvo (target): o alvo que será afetado por esse evento
+-- tipo(type) [nome] que Ã© o seu nome especï¿½fico, ex: mouse in
+-- Alvo (target): o alvo que serï¿½ afetado por esse evento
 
 bubbles, cancelable, currentTarget, defaultPrevented, timestamp, istrusted, ...
 
-- O JavaScript que é a linguagem que o browser utiliza para a realização de eventos
+- O JavaScript que Ã© a linguagem que o browser utiliza para a realizaÃ§Ã£o de eventos
 
 -> API de eventos com Inline HTML
  
-em um web element tem dentro de sua tag um atributo com um determinado tipo (type) cujo valor é o nome de uma função. Neste caso, há um evento programado para acontecer em virtude do nome do atributo, por exemplo, onclick
+em um web element tem dentro de sua tag um atributo com um determinado tipo (type) cujo valor Ã© o nome de uma funÃ§Ã£o. Neste caso, hï¿½ um evento programado para acontecer em virtude do nome do atributo, por exemplo, onclick
 
 sempre tem um prefixo on\in
 
-- após a página ja está renderizada, ao acionar um evento, a função incide sobre o web element específico
+- apï¿½s a pï¿½gina ja estï¿½ renderizada, ao acionar um evento, a funÃ§Ã£o incide sobre o web element especï¿½fico
 
 -> API de eventos com Listener	
 
-o evento não está mais dentro do html, não há mais o atributo onclick dentro da chave do web element
+o evento nï¿½o estï¿½ mais dentro do html, nï¿½o hï¿½ mais o atributo onclick dentro da chave do web element
 
-nesse caso, o evento se dá a partir da seleção do id do web element ou outra referência, e é adicionado um Event Listener, com o nome do evento e a função que será invocada ao ser acionado
+nesse caso, o evento se dï¿½ a partir da seleÃ§Ã£o do id do web element ou outra referï¿½ncia, e Ã© adicionado um Event Listener, com o nome do evento e a funÃ§Ã£o que serï¿½ invocada ao ser acionado
 ex:
 
 document.getElementById('btn').addEventListener('click', func)
 
-nesse caso, click é o type
+nesse caso, click Ã© o type
 
 
 -> Focus x Blur
 
-quando é acionado o evento focus em um elemento, ocorre algo. quando esse foco é "perdido", então é acionado o evento blur
+quando Ã© acionado o evento focus em um elemento, ocorre algo. quando esse foco ï¿½ "perdido", entï¿½o ï¿½ acionado o evento blur
 
-*o evento pode ser disparado a partir de um elemento, porém o alvo deste evento pode ser um outro elemento
+*o evento pode ser disparado a partir de um elemento, porï¿½m o alvo deste evento pode ser um outro elemento
 
 
 -> Change
 
-é a mudança desencadeada quando um elemento perde o foco (blur)
+Ã© a mudanÃ§a desencadeada quando um elemento perde o foco (blur)
 
-ex: ao inserir algo no elemento input, quando retira o foco deste elemento, um evento é disparado nesse elemento ou em outro. Ou sejam a mudança só se concretiza no blur.
+ex: ao inserir algo no elemento input, quando retira o foco deste elemento, um evento ï¿½ disparado nesse elemento ou em outro. Ou sejam a mudanï¿½a sï¿½ se concretiza no blur.
 
 -> Eventos + Selenium
 
-- o selenium divide eventos do próprio selenium com eventos do browser
+- o selenium divide eventos do prï¿½prio selenium com eventos do browser
 
-- o selenium possui um Event Listener, cuja implementação é baseada num padrão de projeto chamado Template Method
+- o selenium possui um Event Listener, cuja implementaÃ§Ã£o Ã© baseada num padrï¿½o de projeto chamado Template Method
 
--- a principal ideia de um Template Method ou EventListener é verificar as condições de antes e depois. Se trata de estados acerca de uma ação
+-- a principal ideia de um Template Method ou EventListener ï¿½ verificar as condiÃ§Ãµes de antes e depois. Se trata de estados acerca de uma aÃ§Ã£o
 
-- a ideia de antes e depois é sintetizada como o que é chamado de Hooks(ganchos)
+- a ideia de antes e depois ï¿½ sintetizada como o que ï¿½ chamado de Hooks(ganchos)
 
 ex:
 
 webElement1(estado A) -> Click -> webElement1(estado B)
 
-esses estados são em função do click
+esses estados sÃ£o em funÃ§Ã£o do click
 
-*esse é um exemplo de apenas um webElement, uma vez que um evento pode ter como target mais webElement e até mesmo todo o DOM
+*esse ï¿½ um exemplo de apenas um webElement, uma vez que um evento pode ter como target mais webElement e atÃ© mesmo todo o DOM
 
 
 -> EventListener
@@ -663,26 +663,26 @@ wE.before_click() -> click() -> wE.after_click()
 
 - Existem EventListeners de: (alguns exemplos de AbstractEventListener)
 
-navegação: .navigate_back; .navigate_forward; .navigate_to
+navegaÃ§Ã£o: .navigate_back; .navigate_forward; .navigate_to
 
 seletores: .find
 
-ações: .click; .change_value_of; .execute_script
+aÃ§Ãµes: .click; .change_value_of; .execute_script
 
-- É possivel criar uma classe para customizar Listeners que herdam de AbstractEventListener
+- Ã© possivel criar uma classe para customizar Listeners que herdam de AbstractEventListener
 
 >>> from selenium.webdriver.support.event import AbstractEventListener
 
 >>> class tipoDeListener(AbstractEventListener):
        ...
 
-*para poder juntar o browser instanciado com a classe de Listener é preciso ter um disparador de eventos
+*para poder juntar o browser instanciado com a classe de Listener Ã© preciso ter um disparador de eventos
 
 -> Event Firing (disparador de eventos)
 
 - O web driver dispara eventos e o event listener escuta esses eventos
 
-- o event firing constrói um wrapper (envolúcro) do webdriver e dispara os eventos para o Listener.
+- o event firing constrÃ³i um wrapper (envÃ³locro) do webdriver e dispara os eventos para o Listener.
 
 
 >>> from selenium.webdriver.support.event import EventFiringWebDriver
@@ -691,19 +691,19 @@ ações: .click; .change_value_of; .execute_script
 
 >>> new_driver = EventFiringWebDriver(browser, tipo_de_listener())
 
-- essa classe Event... vai juntar o browser antes instanciado e fazer com que o listener 'ouça' os eventos disparados pelo webdriver browser
-- o new_driver será o envolucro disso
+- essa classe Event... vai juntar o browser antes instanciado e fazer com que o listener 'ouÃ§a' os eventos disparados pelo webdriver browser
+- o new_driver serï¿½ o envolucro disso
 
-o código que seria feito com a instancia browser será feita agora com new_driver
+o cï¿½digo que seria feito com a instancia browser serÃ¡ feita agora com new_driver
 
 ex:
 
 >>> new_driver.get(url)... etc
 
 
-*é importante saber que o listener não vai catalogar a ação do evento, mas sim os estados de antes e depois. Não vai escutar ao clicar, mas sim ser avisado após o estado anterior não for o mesmo
+*Ã© importante saber que o listener nï¿½o vai catalogar a aÃ§Ã£o do evento, mas sim os estados de antes e depois. Nï¿½o vai escutar ao clicar, mas sim ser avisado apï¿½s o estado anterior nï¿½o for o mesmo
 
-*os métodos criados na classe de listener que herda de AbstractEventListener são métodos já definidos, pois esses são os abstract methods 
+*os mï¿½todos criados na classe de listener que herda de AbstractEventListener sï¿½o mï¿½todos jï¿½ definidos, pois esses sï¿½o os abstract methods 
 
 
 
@@ -711,13 +711,13 @@ ex:
 
 -> Template Methods
 
-- é um padrão de projetos comportamental
-- uma classe que tem um unico método e que implementa algo que seria uma interface
-- o template method é um pattern que é implementado por herença
+- ï¿½ um padrï¿½o de projetos comportamental
+- uma classe que tem um unico mï¿½todo e que implementa algo que seria uma interface
+- o template method ï¿½ um pattern que ï¿½ implementado por herenï¿½a
 
 - uma classe X herda de uma classe abstrata ABC
-  - essa classe ABC não pode ser instanciada e tem um método concreto
-- logo, essa classe X não pode ser instanciada, de modo que toda classe que queira utilzar ela, deve herdar de X
+  - essa classe ABC nï¿½o pode ser instanciada e tem um mï¿½todo concreto
+- logo, essa classe X nï¿½o pode ser instanciada, de modo que toda classe que queira utilzar ela, deve herdar de X
 
 class X(ABC):
 
@@ -730,25 +730,25 @@ class X(ABC):
      ...
 
 
-os métodos são apenas definições abstratas que devem ser desenvolvidas pelaa própria classe que herda de X
+os mï¿½todos sï¿½o apenas definiï¿½ï¿½es abstratas que devem ser desenvolvidas pelaa prï¿½pria classe que herda de X
 
-com isso, a ideia de template é que seja fornecido uma determinada configuração base que será 
+com isso, a ideia de template ï¿½ que seja fornecido uma determinada configuraï¿½ï¿½o base que serï¿½ 
 trabalhada de acordo com as necessidades
 
-as classes que herdam devem utilizar apenas os métodos abstrados de X, que são implementadas pelo template method de X por fim. 
+as classes que herdam devem utilizar apenas os mï¿½todos abstrados de X, que sï¿½o implementadas pelo template method de X por fim. 
 
-template method implementa os métodos abstratos
+template method implementa os mï¿½todos abstratos
 
-*o número de métodos da classe que herdar de X deve ser o mesmo número de métodos das classes abstratas de X e de mesmo nome
+*o nï¿½mero de mï¿½todos da classe que herdar de X deve ser o mesmo nï¿½mero de mï¿½todos das classes abstratas de X e de mesmo nome
 
 -> Hooks
 
-- no caso do template method, é a super classe que chama a subclasse, não o contrário, pois ela é quem estabelece a sequencia de implementação. assim, a super classe usa todas as coisas que foi implementado na sub classe
-  - isso é conhecido como Inversão de Controle ou princípio de hollywood
+- no caso do template method, ï¿½ a super classe que chama a subclasse, nï¿½o o contrï¿½rio, pois ela ï¿½ quem estabelece a sequencia de implementaï¿½ï¿½o. assim, a super classe usa todas as coisas que foi implementado na sub classe
+  - isso ï¿½ conhecido como Inversï¿½o de Controle ou princï¿½pio de hollywood
 
-- uma subclass pode ter um método opcional que só ela pode implementar
+- uma subclass pode ter um mï¿½todo opcional que sï¿½ ela pode implementar
 
-com isso, na super classe é escrito duas linhas de códigos de métodos que PODEM SER implementados ao redor do método que TEM QUE SER implementado
+com isso, na super classe ï¿½ escrito duas linhas de cï¿½digos de mï¿½todos que PODEM SER implementados ao redor do mï¿½todo que TEM QUE SER implementado
 
 
 class X(ABC):
@@ -769,9 +769,9 @@ class X(ABC):
 	...
 
 
-- como a subclasse não pode inserir mais um método, essa possibilidade deve ser incrementada na super classe
+- como a subclasse nï¿½o pode inserir mais um mï¿½todo, essa possibilidade deve ser incrementada na super classe
 
-- portanto, cada classe que herda de X pode ou não utilizar before_func() e after_func() 
+- portanto, cada classe que herda de X pode ou nï¿½o utilizar before_func() e after_func() 
 
 
 
@@ -788,21 +788,21 @@ keyup (soltar uma tecla)
 accesskey
 
 
-*não é possivel digitar a letra S maiúscula junto com as letras minusculas ao enviar o comando
+*nÃ£o Ã© possivel digitar a letra S maiï¿½scula junto com as letras minusculas ao enviar o comando
 
 >>> browser.find_element_by_tag_name('html').send_keys('Selenium')
 
 
 - deve ser primeiro dado um key down na tecla shift ou no capslock e depois um key up no shift antes de digitar o resto
 
---> Atributos de telcas
+--> Atributos de teclas
 
 - shiftKey
 - altKey
 - metaKey(bandeirinha Windows por exemplo)
 - ctrlKey
 
---> métodos modificadores de estado ( getModifierState() )
+--> mï¿½todos modificadores de estado ( getModifierState() )
 
 - CapsLock
 - shift
@@ -812,24 +812,24 @@ accesskey
 
 -> Selenium + Eventos
 
-eventos muitas vezes dependem de interações do usuário
+eventos muitas vezes dependem de interaÃ§Ãµes do usuï¿½rio
 
 mouse, teclado, touch, ...
 
---> Ações
+--> AÃ§Ãµes
 
 mouse: .click
 
 teclado: send_keys, submit, clear
 
-screenshot: .screenshot, .as_baase64, .as_png
+screenshot: .screenshot, .as_base64, .as_png
 
 
 -> Action Chains (low-level API)
 
-- são maneiras de automatizar ações de baixo nível.
+- sï¿½o maneiras de automatizar aÃ§Ãµes de baixo nï¿½vel.
 
-o método send_keys() é uma série de keydown keyup
+o mï¿½todo send_keys() Ã© uma sï¿½rie de keydown keyup
 
 - teclado: .key_down, .key_up, .send_keys, .send_keys_to_element
 
@@ -843,13 +843,13 @@ obtendo a api low-level
 ...   low.key_down(letra)
 ...   low.key_up(letra)
 
->>> low.perform() #os comandos só começam a ser implementado a partir daqui
+>>> low.perform() #os comandos sÃ³ comeÃ§am a ser implementado a partir daqui
 
-- todas as instruções de ActionChains são passadas para uma lista e que essa lista é passada para o método perform que executa todas as ações
+- todas as instruÃ§Ãµes de ActionChains sï¿½o passadas para uma lista e que essa lista Ã© passada para o mï¿½todo perform que executa todas as aÃ§Ãµes
 
-*alguns métodos apenas o webDriver pode realizar, como o .find_element, pois o ActionChains não foi feito para substituir, mas apenas para auxiliar
+*alguns mï¿½todos apenas o webDriver pode realizar, como o .find_element, pois o ActionChains nï¿½o foi feito para substituir, mas apenas para auxiliar
 
---> métodos de movimento em Action Chains
+--> mï¿½todos de movimento em Action Chains
 
 .move_by_offset
 
@@ -857,15 +857,15 @@ obtendo a api low-level
 
 .move_to_element_with_offset
 
-offset é quando for utilizar as coordenadas da janela 
+offset Ã© quando for utilizar as coordenadas da janela 
 
 -> Biblioteca Keys
 
-- é a implementação das teclas, em que cada tecla do teclado é representada por uma string unicode
+- Ã© a implementaÃ§Ã£o das teclas, em que cada tecla do teclado Ã© representada por uma string unicode
 
 >>> from selenium.webdriver.common.keys import Keys
 
-a partir dessa biblioteca é possivel ativar as teclas pelo seu 'nome' ao invés de representação por strings unicode 
+a partir dessa biblioteca ï¿½ possivel ativar as teclas pelo seu 'nome' ao invï¿½s de representaÃ§Ã£o por strings unicode 
 
 ex:
 
@@ -888,48 +888,48 @@ contextmenu
 
 .move_to_element = mouseenter e mouseleave
 
-- Atributos de ação
+- Atributos de aÃ§Ã£o
 
 shiftKey
 altKey
 metaKey
 ctrlKey
 
-o ActionChains tem um método pause() que é semelhante ao sleep
+o ActionChains tem um mï¿½todo pause() que Ã© semelhante ao sleep
 
 
 
 .A9 WAITS (pt 1)
 
--> Carregamento da página
+-> Carregamento da pÃ¡gina
 
-- existe um evento atrelado ao carregamento chamado onload que atua em função do carregamento da página. Esse evento ao ser finalizado, pode mudar o DOM:
+- existe um evento atrelado ao carregamento chamado onload que atua em funÃ§Ã£o do carregamento da pï¿½gina. Esse evento ao ser finalizado, pode mudar o DOM:
 
--- ao entrar numa página, durante o carregamento, o DOM está de uma forma, dependendo da complexidade da página, e ao concluir o carregamento, o DOM é alterado, em que a página se encontra no seu estado estável
+-- ao entrar numa pï¿½gina, durante o carregamento, o DOM estï¿½ de uma forma, dependendo da complexidade da pï¿½gina, e ao concluir o carregamento, o DOM Ã© alterado, em que a pï¿½gina se encontra no seu estado estÃ¡vel
 
--- essa alteração do DOM ocorre também em funções de outros eventos, como por exemplo, uma interação do usuário vai disparar um evento que altera o estado de um elemento da página
+-- essa alteraÃ§Ã£o do DOM ocorre tambï¿½m em funÃ§Ãµes de outros eventos, como por exemplo, uma interaÃ§Ã£o do usuï¿½rio vai disparar um evento que altera o estado de um elemento da pï¿½gina
 
---- o evento realiza um request para o backend, por exemplo, em que a página fica aguardando (on load), até que receba a response
+--- o evento realiza um request para o backend, por exemplo, em que a pï¿½gina fica aguardando (on load), atï¿½ que receba a response
 
 
-Modos ao carregar uma página e baixar os componentes dela:
+Modos ao carregar uma pï¿½gina e baixar os componentes dela:
 
 - Normal:
-> primeiro é parseado o HTML, em seguida é baixado o JS, depois é executado esse JS, e por fim é parseado novamente o HTML
-> Nesse modo, é executado uma tarefa por vez
+> primeiro Ã© parseado o HTML, em seguida Ã© baixado o JS, depois Ã© executado esse JS, e por fim Ã© parseado novamente o HTML
+> Nesse modo, Ã© executado uma tarefa por vez
 
 - Defer
-> Primeiro é parseado o HTML e em algum ponto desse processo é inicializado o download do script JS ao mesmo tempo em que é finalizado o parser do HTML. Por fim de todo esses dois processos é executado o JS
+> Primeiro Ã© parseado o HTML e em algum ponto desse processo Ã© inicializado o download do script JS ao mesmo tempo em que Ã© finalizado o parser do HTML. Por fim de todo esses dois processos Ã© executado o JS
 
 - Async:
-> primeiro é parseado o HTML, e em algum ponto é baixado o JS durante o processo de parser HTML. Ao final desses dois processos é executado o JS e por fim é parseado novamente o HTML
+> primeiro Ã© parseado o HTML, e em algum ponto Ã© baixado o JS durante o processo de parser HTML. Ao final desses dois processos Ã© executado o JS e por fim Ã© parseado novamente o HTML
 
-tanto no Async como no Defer é possivel que o navegador realize mais de uma tarefa por vez
+tanto no Async como no Defer ï¿½ possivel que o navegador realize mais de uma tarefa por vez
 
 
 -> Tipos de espera
 
---> Implícitas: espera todos os elementos, eventos, navegação com um tempo padrão
+--> Implï¿½citas: espera todos os elementos, eventos, navegaÃ§Ã£o com um tempo padrï¿½o
 
 >>> from selenium.webdriver import Firefox
 
@@ -939,23 +939,23 @@ tanto no Async como no Defer é possivel que o navegador realize mais de uma tare
 
 - vai levar 30 segundos de espera de alguma coisa acontecer, alguma coisa geral
 
-	Prós:
-- essa abordagem funciona em cenários Flaky
-- não precisa setar nada, vai ser esperada
+	Prï¿½s:
+- essa abordagem funciona em cenï¿½rios Flaky
+- nï¿½o precisa setar nada, vai ser esperada
 
 
 Contras:
-- segura a aplicação por mais tempo
-- tudo é esperado tendo o mesmo tempo como base. não dá para saber se algo tem prioridade de tempo em relação a outras coisas
-- não funciona para elementos específicos
+- segura a aplicaÃ§Ã£o por mais tempo
+- tudo Ã© esperado tendo o mesmo tempo como base. nï¿½o dÃ¡ para saber se algo tem prioridade de tempo em relaÃ§Ã£o a outras coisas
+- nï¿½o funciona para elementos especï¿½ficos
 - se algo der errado, vai demorar o tempo do wait para saber
 
 
---> Explícitas
+--> Explï¿½citas
 
 - o selenium disponibiliza um range de waits prontos nesse sentido
 - pode ser customizado em tipos de espera 
-- é reutilizável
+- Ã© reutilizï¿½vel
 
 
 -> WebDriverWait
@@ -964,7 +964,7 @@ ex:
 >>> from selenium.webdriver.support.ui import WebDriverWait
 
 >>> wdw = WebDriverWait(
-		driver,
+		driver, 
 		timeout,
 		poll_frequency=0.5,
 		ignored_exceptions=None
@@ -972,12 +972,12 @@ ex:
 
 args:
 
-- driver: é o próprio WebDriver
-- timeout: tempo de espera até o erro
+- driver: Ã© o prï¿½prio WebDriver
+- timeout: tempo de espera atÃ© o erro
 - poll_frequency: tempo entre uma tentativa e outra
 - ignored_exceptions: lista de Exception a serem ignoradas
 
-Método until: executa até que o `Callable` retorne True ou até estourar o `timeout`
+Mï¿½todo until: executa atÃ© que o `Callable` retorne True ou atÃ© estourar o `timeout`
 
 wdw.until(
 	Callable, 
@@ -986,13 +986,13 @@ wdw.until(
 
 args:
 
-- Callable: operação invocável que sera executada, retornando True
+- Callable: operaÃ§Ã£o invocÃ¡vel que serÃ¡ executada, retornando True
 - mensage: mensagem caso ocorra o erro
 
-*o callable é obrigatório
+*o callable Ã© obrigatï¿½rio
 
 
-Método until_not: é o inverso, em que espera até o `callable` retorne False
+Mï¿½todo until_not: Ã© o inverso, em que espera atÃ© o `callable` retorne False
 
 exemplo:
 
@@ -1001,7 +1001,7 @@ exemplo:
 
 >>> browser = Firefox()
 >>> wdw = WebDriverWait(browser, timeout=30)
-wdw.until(<função>)
+wdw.until(<funÃ§Ã£o>)
 
 
 -> Esperas personalizadas
@@ -1013,26 +1013,26 @@ def esperar_botao(webdriver):
 webdriver.find_elements_by_css_selector('button')
   return bool(elements)
 
-#a função acima vai apenas procurar o elemento button e na ocorrência deste, vai retornar um bool
+#a funÃ§Ã£o acima vai apenas procurar o elemento button e na ocorrï¿½ncia deste, vai retornar um bool
 
 wdw.until(esperar_botao)
-#vai realizar a função até estourar o timeout parametrizado
+#vai realizar a funÃ§Ã£o atÃ© estourar o timeout parametrizado
 
 browser.find_element_by_tag_name('button').click()
 
 #fim script
 
-*observações:
+*observaÃ§Ãµes:
 
-- until e until_not sempre passam o webdriver como argumento e SOMENTE ELE quem passa, ou seja, não se deve passar o driver para a função, pois o until e not_until quem passa o drive que recebeu para a função
+- until e until_not sempre passam o webdriver como argumento e SOMENTE ELE quem passa, ou seja, nï¿½o se deve passar o driver para a funÃ§Ã£o, pois o until e not_until quem passa o drive que recebeu para a funÃ§Ã£o
 
-- a função em questão sempre deve retornar True ou False
+- a funÃ§Ã£o em questÃ£o sempre deve retornar True ou False
 
 
 -> functools partial
 
-- partial é uma função da biblioteca functools
-- ela é usada para simplificar a chamada da função, de modo em que se é possível utilizar um parametro
+- partial Ã© uma funÃ§Ã£o da biblioteca functools
+- ela Ã© usada para simplificar a chamada da funÃ§Ã£o, de modo em que se Ã© possï¿½vel utilizar um parametro
 
 ex:
 
@@ -1043,35 +1043,33 @@ from functools import partial
 def soma(x, y):
 	return x + y
 
-soma_de_2 = partial(soma, x=2)
+soma_de_2 = partial(s	oma, x=2)
 
-#dessa forma, está criado uma nova função, em que se fixando um dos parâmetros, é possivel chamar a função soma com apenas um parâmetro
+#dessa forma, estï¿½ criado uma nova funÃ§Ã£o, em que se fixando um dos parï¿½metros, Ã© possivel chamar a funÃ§Ã£o soma com apenas um parï¿½metro
 #fim script
 
-exemplo de aplicação após a definição e manipulação:
+exemplo de aplicaÃ§Ã£o apÃ³s a definiÃ§Ã£o e manipulaÃ§Ã£o:
 
 >>> soma_de_2(3)
 '5'
 
-com isso, é possivel chamar a função sempre em que o retorno será o parâmetro passado somado de 2
+com isso, Ã© possivel chamar a funÃ§Ã£o sempre em que o retorno serï¿½ o parï¿½metro passado somado de 2
 
 
 -> By
-- o By nos auxilia a deixar o código mais "assertivo". Ele é comumente usado em conjunto com `wb.find_element`. Assim, nos ajuda a parametrizar mais as nossas funções
+- o By nos auxilia a deixar o cï¿½digo mais "assertivo". Ele Ã© comumente usado em conjunto com `wb.find_element`. Assim, nos ajuda a parametrizar mais as nossas funÃ§Ãµes
 
-exemplo de uma aplicação que se pode melhorar:
+exemplo de uma aplicaÃ§Ã£o que se pode melhorar:
 
-def esperar_elemento(
-		element,
-		web_driver
-):	if web_driver.find_elements_by_css_selector(element):
-		return True
+def esperar_elemento(element, web_driver):	
+		if web_driver.find_elements_by_css_selector(element):
+			return True
 	return False
 
 
-- o By serve como um seletor dinâmico
+- o By serve como um seletor dinï¿½mico
 
-exemplo da função melhorada:
+exemplo da funÃ§Ã£o melhorada:
 
 #inicio trecho do script
 
@@ -1085,7 +1083,7 @@ wdw.until(partial(esperar_elemento, By.CSS_SELECTOR, 'selector'))
 
 #fim script
 
-- o By é uma classe, que possui atributos que servem para generalizar o uso do método do web driver que é o .find_elements()
+- o By Ã© uma classe, que possui atributos que servem para generalizar o uso do mï¿½todo do web driver que Ã© o .find_elements()
 
 
 -> Espera com classes
@@ -1099,38 +1097,35 @@ class EsperarElemento:
 	def __init__(self, by, selector):
 	self.locator = (by, selector)
 
-	def __call__(self, driver):
+	def __call__(self, web_driver):
 		if web_driver.find_elements(*locator):
 			return True
 		return False
 
-web_driver_wait.until(
-			EsperarElemento(By.Id, 'meu_id')
-
-)
+web_driver_wait.until(EsperarElemento(By.Id, 'meu_id'))
 
 
-- os waits que o selenium implementa são por classes
+- os waits que o selenium implementa sï¿½o por classes
 
 #fim script
 
 
 -> Locators
 
-Locators são maneiras de unir o By a string do elemento
+Locators sÃ£o maneiras de unir o By a string do elemento
 
-porém o conceito é trazido de selenium java e faz pouco ou nenhum sentido usando em python
+porï¿½m o conceito Ã© trazido de selenium java e faz pouco ou nenhum sentido usando em python
 
-resumidamente um Locator é uma tupla com o By eaa string do elemento
+resumidamente um Locator Ã© uma tupla com o By eaa string do elemento
 
-ex da sentença acima:
+ex da sentenï¿½a acima:
 from selenium.webdriver.common.by import By
 
 locator = (By.CSS_SELECTOR, 'div.minha_classe')
 
 
 
-a maioria das implementações dos waits padrão que o selenium disponibiliza são em locators
+a maioria das implementaÃ§Ãµes dos waits padrï¿½o que o selenium disponibiliza sï¿½o em locators
 
 exemplo:
 
@@ -1157,7 +1152,7 @@ wdw.until(
 #fim script
 
 
-- é possível que elementos tenham um atributo que anula os eventos de click
+- Ã© possï¿½vel que elementos tenham um atributo que anula os eventos de click
 
 no caso seria algo do tipo:
 
@@ -1165,30 +1160,236 @@ no caso seria algo do tipo:
 	pointer-events: none
 }
 
-- nesse caso, o método .click() não poderia ser realizado, podendo até mesmo subir uma exception caso feito
+- nesse caso, o mï¿½todo .click() nï¿½o poderia ser realizado, podendo atÃ© mesmo subir uma exception caso feito
 
 
-o contrário disso seria algo do tipo:
+o contrï¿½rio disso seria algo do tipo:
 
 	pointer-events: visible
 
-- dessa forma, o elemento fica visivel para o evento de interação com click
+- dessa forma, o elemento fica visivel para o evento de interaÃ§Ã£o com click
 
 
 
 --> Esperando elemento ativo:
 
-embora seja possível ver o elemento, ele não tem as características que precisamos para clicar, ou seja, não aceita eventos de click
+embora seja possï¿½vel ver o elemento, ele nï¿½o tem as caracterï¿½sticas que precisamos para clicar, ou seja, nï¿½o aceita eventos de click
 
 precisamos esperar o elemento estar ativo is_enabled
 
-exemplo de implementação:
+exemplo de implementaÃ§Ã£o:
 
-def esperar_ser_clicavel(
-	element, web_driver
-):
+def esperar_ser_clicavel(element, web_driver):
 	print(f'esperando {element}')
 	elements = web_driver.find_elements_by_css_selector(element)
 	if elements:
 		return elements[0].is_enabled()
 	return False
+
+
+
+.A10 WAITS (pt 2)
+
+Expected Conditions:
+
+sÃ£o classes prontas para esperas "comuns", "usuais". Podem ser enxergada pelas categorias:
+
+- Existencia do elemento
+- visibilidade do elemento
+- navegaÃ§Ã£o
+- verificaÃ§Ã£o de texto
+- janelas e frames
+
+expected_conditions Ã© o nome de um mÃ³dulo na lib do Selenium
+
+> ExistÃªncia do elemento
+
+Saber se o elemento estÃ¡ na tela ou existe na tela. Evita tentar executar uma operaÃ§Ã£o em um elemento que pode ainda nÃ£o estar disponÃ­vel
+
+...
+>>> from selenium.webdriver.support.expected_conditions import presence_of_element_located
+
+>>> locator = (By.CSS_SELECTOR, 'button.myclass')
+
+>>> wdw.until(presence_of_element_located(locator))
+vai verificar se o elemento estÃ¡ presente no local passado como locator
+
+
+> Visibilidade do elemento:
+
+saber se o elemento estÃ¡ desenhado na tela ou nÃ£o, e tambÃ©m se ele estÃ¡ ativo ou nÃ£o
+
+ex:
+
+- o elemento pode nÃ£o ter sido desenhado
+- o elemento pode ter sido desenhado mas pode estar inativo
+
+
+visibility_of(web_element):
+como as funÃ§Ãµes passadas para o wdw.until, retorna True caso o web element passado for visÃ­vel na tela
+
+
+invisibility_of(web_element):
+Ã© o oposto da funÃ§Ã£o acima
+
+
+visibility_of_element_located(locator):
+Ã© o mesmo que a funÃ§Ã£o visibility_of, mas se deve passar o locator
+
+
+invisibility_of_element_located(locator):
+Ã© o oposto da funÃ§Ã£o acima
+
+
+visibility_of_any_element_located(locator):
+Ã© mais generalista, busca o locator em qualquer web element, retornando True no primeiro que encontrar
+
+
+visibiliy_of_all_element_located(locator):
+encontra todos web_elements com a caracteristica passada em locator
+
+
+staleness_of(web_element):
+verifica se o web_element estÃ¡ habilitado. Referente ao valor HTML disabled presente (ou nÃ£o) no web element 
+
+element_to_be_clickable(web_element):
+verifica as duas coisas, se estÃ¡ vÃ­sivel e se estÃ¡ ativo, checando tanto o CSS quanto o HTML
+
+> NavegaÃ§Ã£o:
+esperas baseadas em navegaÃ§Ã£o
+
+- Url corrente Ã©:
+
+url_changes(url):
+verifica se a url passada Ã© diferente da url corrente, retornando o booleano disso
+
+url_to_be(url):
+retorna se a url passada Ã© a url corrente
+
+
+- URL corrente contÃ©m:
+
+url_matches(pattern):
+retorna se a o padrÃ£o passado se encontra na url corrente por regex
+
+
+url_contains(url):
+retorna de a url passada estÃ¡ em algum trecho da url atual
+
+
+- TÃ­tulo:
+	
+title_is(title):
+retorna se o titulo passado Ã© igual o tÃ­tulo corrente do driver
+
+
+title_contains(title):
+retorna se o titulo passado estÃ¡ no tÃ­tulo corrente do driver	
+
+
+- VerificaÃ§Ã£o de texto
+
+verificar se dentro de um web element existe um determinado tipo de texto
+
+
+text_to_be_present_in_element(locator, text):
+retorna se o texto estÃ¡ dentro do elemento
+
+
+text_to_be_present_in_element_value(locator, text):
+retorna se o texto estÃ¡ presente no valor 
+
+
+.A11 INTERAGINDO COM JANELAS, ABAS, ALERTAS E FRAMES
+
+Contexto de alertas:
+
+from selenium.webdriver import Firefox
+
+f = Firefox()
+...
+
+f.switch_to.alert 
+ou 
+f.switch_to_alert()
+
+a SEGUNDA Ã© DEPRECATED, assim como os mÃ©todos () nesse sentido
+
+
+alert = f.switch_to.alert 
+
+retorna um objeto seleniu.webdriver.commom.alert.Alert
+
+esse objeto tem alguns mÃ©todos e atributos:
+
+- accept
+- dismiss
+- send_keys
+- text
+
+Ã© possÃ­vel importar o objeto alerta:
+
+from selenium.webdriver.common.alert import Alert
+
+alerta = Alert(webdriver)
+
+essa classe em expecÃ­fica lida com erros, caso o alerta nÃ£o esteja presente. a classe pode ser instanciada a qualquer momento no cÃ³digo, porÃ©m a primeira abordagem (switch_to.alert) acessa o alerta, se existir, apenas nesse instante, saindo do DOM e indo pro alert vigente. esse primeiro caso tbm deve ser instanciado apÃ³s a apariÃ§Ã£o do alerta
+
+
+Waits em alertas
+
+from selenium.webdriver.support.expected_conditions import alert_is_present
+
+alert_is_present():
+retorna True caso o aelrta estiver na tela
+
+alerta = wdw.until(alert_is_present()) 
+isso retorna um alerta, pois essa funÃ§Ã£o alert_is_present realiza um switch_to
+
+
+Janelas e abas
+
+uma janela tem um current_window_handle com um ID especÃ­fico da janela em que o webdriver atribui esse ID de sessÃ£o
+
+>>> driver.current_window_handle
+retorna o cÃ³digo do ID
+
+para cada aba, havera um ID desse diferente
+
+para obter a lista com todos esses ID:
+>>> browser.window_handles
+
+JANELAS == ABAS
+JANELAS == POPUPS
+
+mudando entre as janelas:
+
+>>> browser.switch_to.window(ID)
+
+
+Abrindo abas usando script
+
+>>> browser.execute_script(codigo_JS)
+
+
+Waits em janelas
+
+new_window_is_opened(current_handles):
+retorna True se uma nova janela foi aberta
+
+
+number_of_windows_to_be(num_windows):
+retorna True se o nÃºmero de janelas abertas Ã© igual ao numero de janelas passada
+
+
+Iframes
+
+deve ocorrer um switch de um DOM para outro DOM, pois o Iframe Ã© um outro DOM
+
+browser.switch_to.frame(atributo_name_do_frame)
+
+
+Waits em iframe
+
+frame_to_be_available_and_switch_to_it(locator):
+retorna True se o frame estiver disponÃ­vel e puder mudar mudar pra ele
